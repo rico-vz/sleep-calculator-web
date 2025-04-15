@@ -19,49 +19,51 @@ Web application for calculating optimal sleep schedule.
    cd sleep-calculator-web
    ```
 
-2. Copy the environment file:
+2. Copy the Laravel environment file:
 
    ```bash
    cp src/.env.example src/.env
    ```
 
-3. Start the Docker environment:
+3. Update the root .env file with the ports want to use for Nginx and Redis.
+
+4. Start the Docker environment:
 
    ```bash
    docker-compose up -d
    ```
 
-4. Install PHP dependencies:
+5. Install PHP dependencies:
 
    ```bash
    docker-compose exec app composer install
    ```
 
-5. Generate application key (if not already set):
+6. Generate application key (if not already set):
 
    ```bash
    docker-compose exec app php artisan key:generate
    ```
 
-6. Install JavaScript dependencies:
+7. Install JavaScript dependencies:
 
    ```bash
    docker-compose exec app npm install
    ```
 
-7. Run Vite development server:
+8. Run Vite development server:
 
    ```bash
    docker-compose exec app npm run dev
    ```
 
-8. Run database migrations:
+9. Run database migrations:
 
    ```bash
    docker-compose exec app php artisan migrate
    ```
 
-9. Access the application at [http://localhost](http://localhost)
+10. Access the application at localhost (with the port you set in the .env file).
 
 ### Project Structure
 
