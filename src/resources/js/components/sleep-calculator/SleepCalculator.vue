@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import CalculateBedTime from './CalculateBedTime.vue';
 import CalculateWakeTime from './CalculateWakeTime.vue';
+import { Moon, Sun } from 'lucide-vue-next';
 
 interface ResultsType {
     times: Date[];
@@ -17,23 +18,48 @@ defineProps({
 const activeTab = ref("calculate-bed-time");
 const results = ref<ResultsType | null>(null);
 
-// Placeholder for bed time calculation
-const handleCalculateBedTime = () => {
-    // Note: Real implementation would be added here
-    const fakeTimes = Array(6).fill(null).map(() => new Date());
-    results.value = { times: fakeTimes, type: "sleep" };
+watch(activeTab, () => {
+    results.value = null;
+});
+
+const handleCalculateBedTime = (formData: any) => {
+    const wakeTime = new Date();
+    wakeTime.setHours(parseInt(formData.hour) + (formData.ampm === 'PM' ? 12 : 0));
+    wakeTime.setMinutes(parseInt(formData.minute));
+    const bedTimes = Array.from({ length: 6 }, (_, i) => {
+        const bedTime = new Date(wakeTime);
+        bedTime.setMinutes(bedTime.getMinutes() - (i + 1) * 90 - 15);
+        return bedTime;
+    }).reverse();
+    results.value = { times: bedTimes, type: "sleep" };
 };
 
-// Placeholder for wake time calculation
 const handleWakeTimeSubmit = (formData: any) => {
-    // Note: Real implementation would be added here
-    const fakeTimes = Array(6).fill(null).map(() => new Date());
-    results.value = { times: fakeTimes, type: "wake" };
+    const sleepTime = new Date();
+    sleepTime.setHours(parseInt(formData.hour) + (formData.ampm === 'PM' ? 12 : 0));
+    sleepTime.setMinutes(parseInt(formData.minute) + 15);
+    const wakeTimes = Array.from({ length: 6 }, (_, i) => {
+        const wakeTime = new Date(sleepTime);
+        wakeTime.setMinutes(wakeTime.getMinutes() + (i + 1) * 90);
+        return wakeTime;
+    });
+    results.value = { times: wakeTimes, type: "wake" };
 };
 
-// Placeholder function for formatting time
 const formatTime = (date: Date): string => {
-    return "12:00 AM"; // Placeholder - would be implemented in real app
+    const options: Intl.DateTimeFormatOptions = {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+    };
+    return date.toLocaleString('en-US', options);
+};
+
+const calculateSleepHours = (cycles: number): string => {
+    const totalMinutes = (cycles * 90);
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return (hours + (minutes / 60)).toFixed(1).replace(/\.0$/, '');
 };
 </script>
 
@@ -51,11 +77,11 @@ const formatTime = (date: Date): string => {
             <Tabs v-model="activeTab" default-value="calculate-bed-time">
                 <TabsList class="grid grid-cols-2 mb-6">
                     <TabsTrigger value="calculate-bed-time" class="space-x-2">
-                        <!-- Icon placeholder -->
+                        <Moon class="h-4 w-4" />
                         <span>Calculate bed time</span>
                     </TabsTrigger>
                     <TabsTrigger value="calculate-wake-time" class="space-x-2">
-                        <!-- Icon placeholder -->
+                        <Sun class="h-4 w-4" />
                         <span>Calculate wake time</span>
                     </TabsTrigger>
                 </TabsList>
@@ -68,53 +94,65 @@ const formatTime = (date: Date): string => {
                     <CalculateWakeTime @submit="handleWakeTimeSubmit" />
                 </TabsContent>
             </Tabs>
-
-            <div v-if="results" class="mt-8 pt-6 border-t">
-                <h3 class="text-lg font-semibold mb-4 font-montserrat">
-                    {{ results.type === "wake" ? "Optimal Wake-Up Times" : "Optimal Bedtimes" }}
-                </h3>
-                <p class="text-sm text-muted-foreground mb-4">
-                    {{ results.type === "wake"
-                        ? "These wake times are based on completing full sleep cycles:"
-                        : "These bedtimes are based on waking up at your desired time:" }}
-                </p>
-
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <Card v-for="(time, index) in results.times" :key="index"
-                        :class="`overflow-hidden ${index === 4 ? 'border-primary border-2' : ''}`">
-                        <CardContent class="p-4">
-                            <div class="flex items-center justify-between">
-                                <div class="space-y-1">
-                                    <p :class="`text-xl font-bold ${index === 4 ? 'text-primary' : ''}`">
-                                        {{ formatTime(time) }}
-                                    </p>
-                                    <p class="text-xs text-muted-foreground">
-                                        {{ results.type === "wake"
-                                            ? `${index + 1} cycle${index !== 0 ? 's' : ''}`
-                                            : `${6 - index} cycle${6 - index !== 1 ? 's' : ''}` }}
-                                    </p>
-                                </div>
-                                <!-- Icon placeholder -->
-                            </div>
-                            <p v-if="index === 4"
-                                class="text-xs mt-2 text-primary-foreground bg-primary px-1.5 py-0.5 rounded-sm font-medium inline-block">
-                                Recommended
-                            </p>
-                        </CardContent>
-                    </Card>
-                </div>
-
-                <div class="mt-6 p-4 bg-muted rounded-lg">
-                    <h4 class="font-semibold text-sm mb-2">About Sleep Cycles</h4>
-                    <p class="text-xs text-muted-foreground">
-                        Sleep cycles typically last 90 minutes. Waking up at the end of a cycle, rather than in the
-                        middle,
-                        helps you feel more refreshed. This calculator adds 14 minutes to account for the average time
-                        it
-                        takes to fall asleep.
+            <Transition enter-active-class="transition-all duration-300 ease-out"
+                enter-from-class="opacity-0 transform -translate-y-4"
+                enter-to-class="opacity-100 transform translate-y-0"
+                leave-active-class="transition-all duration-200 ease-in" leave-from-class="opacity-100"
+                leave-to-class="opacity-0 transform -translate-y-4">
+                <div v-if="results" class="mt-8 pt-6 border-t">
+                    <h3 class="text-lg font-semibold mb-4 font-montserrat">
+                        {{ results.type === "wake" ? "Optimal Wake-Up Times" : "Optimal Bedtimes" }}
+                    </h3>
+                    <p class="text-sm text-muted-foreground mb-4">
+                        {{ results.type === "wake"
+                            ? "These wake times are based on completing full sleep cycles:"
+                            : "These bedtimes are based on waking up at your desired time:" }}
                     </p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <Card v-for="(time, index) in results.times" :key="index"
+                            :class="`overflow-hidden ${(results.type === 'wake' ? index === 4 : index === 1) ? 'border-primary border-2' : ''}`">
+                            <CardContent class="p-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-xs text-muted-foreground">
+                                            {{ results.type === "wake"
+                                                ? `${index + 1} cycle${index !== 0 ? 's' : ''}`
+                                                : `${6 - index} cycle${6 - index !== 1 ? 's' : ''}` }}
+                                        </p>
+                                        <p
+                                            :class="`text-xl font-bold ${(results.type === 'wake' ? index === 4 : index === 1) ? 'text-primary' : ''}`">
+                                            {{ formatTime(time) }}
+                                        </p>
+                                        <p class="text-xs text-muted-foreground">
+                                            {{ results.type === "sleep"
+                                                ? calculateSleepHours(6 - index)
+                                                : calculateSleepHours(index + 1) }}
+                                            hours of sleep
+                                        </p>
+                                    </div>
+                                </div>
+                                <p v-if="results.type === 'wake' && index === 4 || results.type === 'sleep' && index === 1"
+                                    class="text-xs mt-2 text-primary-foreground bg-primary px-1.5 py-0.5 rounded-sm font-medium inline-block">
+                                    Recommended
+                                </p>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-muted rounded-lg">
+                        <h4 class="font-semibold text-sm mb-2">About Sleep Cycles</h4>
+                        <p class="text-xs text-muted-foreground">
+                            Sleep cycles usually last around 90 minutes. Waking up at the end of a cycle, instead of in the
+                            middle onf one,
+                            helps you feel more refreshed. {{ appName }} adds 15 minutes to account for the average
+                            time
+                            it
+                            takes people to fall asleep.
+                        </p>
+                    </div>
                 </div>
-            </div>
+            </Transition>
         </CardContent>
     </Card>
 </template>
