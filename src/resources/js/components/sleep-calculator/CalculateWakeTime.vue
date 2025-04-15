@@ -8,7 +8,7 @@ const emit = defineEmits(['submit']);
 
 // Generate options for hour, minute, am/pm selects
 const hourOptions = Array.from({ length: 12 }, (_, i) => i + 1);
-const minuteOptions = Array.from({ length: 60 }, (_, i) => i);
+const minuteOptions = Array.from({ length: 12 }, (_, i) => i * 5);
 
 const formData = ref({
     hour: '11',
