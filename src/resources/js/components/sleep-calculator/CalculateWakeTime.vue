@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { ref } from 'vue';
+import { Sun } from "lucide-vue-next";
 
 const emit = defineEmits(['submit']);
 
@@ -25,9 +26,8 @@ const handleSubmit = (e: Event) => {
     <form @submit="handleSubmit" class="space-y-4">
         <div class="text-center mb-4">
             <div class="inline-block">
-                <!-- Icon placeholder -->
                 <div class="h-14 w-14 bg-primary rounded-full flex items-center justify-center text-white">
-                    Clock
+                    <Sun class="h-8 w-8" />
                 </div>
             </div>
             <p class="text-center text-muted-foreground max-w-md mx-auto mt-2">
