@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { ref } from 'vue';
-import { Sun } from "lucide-vue-next";
+import { Sun, Moon } from "lucide-vue-next";
 
 const emit = defineEmits(['submit']);
 
@@ -18,6 +18,25 @@ const formData = ref({
 
 const handleSubmit = (e: Event) => {
     e.preventDefault();
+    emit('submit', formData.value);
+};
+
+const sleepNow = () => {
+    const now = new Date();
+    const hours = now.getHours();
+    let displayHours = hours % 12;
+    if (displayHours === 0) displayHours = 12;
+
+    const minutes = now.getMinutes() + 5; // add extra 5min cause user still needs to get ready probably
+    const roundedMinutes = Math.round(minutes / 5) * 5;
+    const formattedMinutes = (roundedMinutes % 60).toString().padStart(2, '0');
+
+    formData.value = {
+        hour: displayHours.toString(),
+        minute: formattedMinutes,
+        ampm: hours >= 12 ? 'PM' : 'AM'
+    };
+
     emit('submit', formData.value);
 };
 </script>
@@ -64,8 +83,14 @@ const handleSubmit = (e: Event) => {
             </div>
         </div>
 
-        <Button type="submit" size="lg" class="w-full">
-            Calculate Waketime
-        </Button>
+        <div class="grid grid-cols-2 gap-3">
+            <Button type="submit" size="lg" class="w-full">
+                Calculate Waketime
+            </Button>
+            <Button type="button" size="lg" class="w-full" variant="outline" @click="sleepNow">
+                <Moon class="mr-2 h-4 w-4" />
+                Sleep Now
+            </Button>
+        </div>
     </form>
 </template>
