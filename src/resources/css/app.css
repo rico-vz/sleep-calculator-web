@@ -132,6 +132,11 @@
     --destructive: hsl(0, 62.8%, 30.6%);
     --destructive-foreground: hsl(0, 85.7%, 97.3%);
     --border: hsl(222, 47%, 25%);
+    --sidebar-border: hsl(222, 47%, 25%);
+    --sidebar-background: hsl(223, 47%, 14%);
+    --sidebar-foreground: hsl(0, 0%, 95%);
+    --sidebar-accent: hsl(223, 47%, 10%);
+    --sidebar-accent-foreground: hsl(0, 0%, 95%);
     --input: hsl(222, 47%, 25%);
     --ring: hsl(142.4, 71.8%, 29.2%);
 }
