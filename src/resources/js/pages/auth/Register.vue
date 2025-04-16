@@ -24,47 +24,36 @@ const submit = () => {
 
 <template>
     <AuthBase title="Create an account" description="Enter your details below to create your account">
+
         <Head title="Register" />
 
         <form @submit.prevent="submit" class="flex flex-col gap-6">
             <div class="grid gap-6">
                 <div class="grid gap-2">
                     <Label for="name">Name</Label>
-                    <Input id="name" type="text" required autofocus :tabindex="1" autocomplete="name" v-model="form.name" placeholder="Full name" />
+                    <Input id="name" type="text" required autofocus :tabindex="1" autocomplete="name"
+                        v-model="form.name" placeholder="Full name" />
                     <InputError :message="form.errors.name" />
                 </div>
 
                 <div class="grid gap-2">
                     <Label for="email">Email address</Label>
-                    <Input id="email" type="email" required :tabindex="2" autocomplete="email" v-model="form.email" placeholder="email@example.com" />
+                    <Input id="email" type="email" required :tabindex="2" autocomplete="email" v-model="form.email"
+                        placeholder="email@example.com" />
                     <InputError :message="form.errors.email" />
                 </div>
 
                 <div class="grid gap-2">
                     <Label for="password">Password</Label>
-                    <Input
-                        id="password"
-                        type="password"
-                        required
-                        :tabindex="3"
-                        autocomplete="new-password"
-                        v-model="form.password"
-                        placeholder="Password"
-                    />
+                    <Input id="password" type="password" required :tabindex="3" autocomplete="new-password"
+                        v-model="form.password" placeholder="Password" />
                     <InputError :message="form.errors.password" />
                 </div>
 
                 <div class="grid gap-2">
                     <Label for="password_confirmation">Confirm password</Label>
-                    <Input
-                        id="password_confirmation"
-                        type="password"
-                        required
-                        :tabindex="4"
-                        autocomplete="new-password"
-                        v-model="form.password_confirmation"
-                        placeholder="Confirm password"
-                    />
+                    <Input id="password_confirmation" type="password" required :tabindex="4" autocomplete="new-password"
+                        v-model="form.password_confirmation" placeholder="Confirm password" />
                     <InputError :message="form.errors.password_confirmation" />
                 </div>
 
@@ -73,11 +62,22 @@ const submit = () => {
                     Create account
                 </Button>
             </div>
-
             <div class="text-center text-sm text-muted-foreground">
                 Already have an account?
                 <TextLink :href="route('login')" class="underline underline-offset-4" :tabindex="6">Log in</TextLink>
             </div>
         </form>
+        <div class="flex items-center justify-center gap-2">
+            <span class="h-px w-full bg-border/40" />
+            <span class="text-sm text-muted-foreground">or</span>
+            <span class="h-px w-full bg-border/40" />
+        </div>
+        <div class="flex items-center justify-center gap-2">
+            <a :href="route('auth.google.redirect')" class="w-full">
+                <Button type="button" class="w-full" variant="outline" :disabled="form.processing">
+                    Sign up using Google
+                </Button>
+            </a>
+        </div>
     </AuthBase>
 </template>
