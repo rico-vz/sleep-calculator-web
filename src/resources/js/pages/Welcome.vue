@@ -6,6 +6,7 @@ import Header from '@/components/Header.vue';
 import Hero from '@/components/Hero.vue';
 import HowItWorks from '@/components/HowItWorks.vue';
 import CTA from '@/components/CTA.vue';
+import Footer from '@/components/Footer.vue';
 
 const props = defineProps<SharedData>();
 </script>
@@ -20,6 +21,7 @@ const props = defineProps<SharedData>();
         <Hero :appName="props.name"/>
         <HowItWorks :appName="props.name" />
         <CTA />
+        <Footer :appName="props.name" />
 
     </div>
 
