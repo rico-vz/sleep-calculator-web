@@ -117,7 +117,7 @@
     --popover-foreground: hsl(240, 10%, 3.9%);
 
     /* Sidebar-specific */
-    --sidebar-accent: hsl(240, 4.8%, 95.9%);
+    --sidebar-accent: hsl(240, 5.9%, 90%);
     --sidebar-accent-foreground: hsl(240, 5.9%, 10%);
     --sidebar-accent-ring: hsl(240, 5.9%, 90%);
     --sidebar-background: hsl(240, 4.8%, 95.9%);
