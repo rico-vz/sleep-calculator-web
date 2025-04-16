@@ -16,7 +16,9 @@ const props = defineProps<Props>();
         class="border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div class="container flex h-16 max-w-screen-xl items-center justify-between">
             <div class="flex items-center gap-2">
-                <!-- Logo/icon -->
+                <Link :href="route('home')">
+                <img src="/img/pa-sleep-letter.png" alt="Logo" class="h-8 w-8 rounded-full" />
+                </Link>
                 <div class="flex flex-col">
                     <span class="text-xl font-bold tracking-tight text-foreground">
                         {{ appName }}
