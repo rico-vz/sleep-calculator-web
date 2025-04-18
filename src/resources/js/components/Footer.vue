@@ -35,8 +35,8 @@ const currentYear = ref(new Date().getFullYear());
                             </Link>
                         </li>
                         <li>
-                            <Link href="/sleep-science" class="text-sm text-muted-foreground hover:text-primary">
-                            Sleep Science
+                            <Link href="/about" class="text-sm text-muted-foreground hover:text-primary">
+                            About
                             </Link>
                         </li>
                         <li>
@@ -56,7 +56,7 @@ const currentYear = ref(new Date().getFullYear());
                         </li>
                         <li>
                             <Link href="/contact" class="text-sm text-muted-foreground hover:text-primary">
-                            Contact
+                            Email
                             </Link>
                         </li>
                         <li>
@@ -67,20 +67,8 @@ const currentYear = ref(new Date().getFullYear());
                     </ul>
                 </div>
                 <div>
-                    <h3 class="font-medium mb-3 text-foreground/90">Connect</h3>
+                    <h3 class="font-medium mb-3 text-foreground/90">Social</h3>
                     <ul class="space-y-2">
-                        <li>
-                            <a href="https://X.com" target="_blank" rel="noopener noreferrer"
-                                class="text-sm text-muted-foreground hover:text-primary">
-                                X (Twitter)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-                                class="text-sm text-muted-foreground hover:text-primary">
-                                Instagram
-                            </a>
-                        </li>
                         <li>
                             <a href="https://producthunt.com" target="_blank" rel="noopener noreferrer"
                                 class="text-sm text-muted-foreground hover:text-primary">
@@ -101,9 +89,6 @@ const currentYear = ref(new Date().getFullYear());
                     </Link>
                     <Link href="/privacy" class="text-xs text-muted-foreground hover:text-primary">
                     Privacy
-                    </Link>
-                    <Link href="/cookies" class="text-xs text-muted-foreground hover:text-primary">
-                    Cookies
                     </Link>
                 </div>
             </div>
