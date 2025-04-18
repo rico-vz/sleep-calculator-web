@@ -64,8 +64,8 @@ const calculateSleepHours = (cycles: number): string => {
 </script>
 
 <template>
-    <Card class="w-full max-w-3xl mx-auto">
-        <CardHeader class="space-y-1 text-center">
+    <Card class="w-full max-w-3xl mx-auto p-6 pt-0">
+        <CardHeader class="space-y-1 text-center p-6">
             <CardTitle class="text-2xl font-bold font-montserrat">
                 {{ appName }} Calculator
             </CardTitle>
