@@ -27,7 +27,7 @@ const sleepNow = () => {
     let displayHours = hours % 12;
     if (displayHours === 0) displayHours = 12;
 
-    const minutes = now.getMinutes() + 5; // add extra 5min cause user still needs to get ready probably
+    const minutes = now.getMinutes();
     const roundedMinutes = Math.round(minutes / 5) * 5;
     const formattedMinutes = (roundedMinutes % 60).toString().padStart(2, '0');
 
