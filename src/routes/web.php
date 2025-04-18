@@ -24,6 +24,16 @@ Route::get('/faq', function () {
     return Inertia::render('FAQ');
 })->name('faq');
 
+Route::get('/blog', function () {
+    return Inertia::render('blog/Index');
+})->name('blog.index');
+
+Route::get('/blog/{slug}', function ($slug) {
+    return Inertia::render('blog/Show', [
+        'slug' => $slug,
+    ]);
+})->name('blog.show');
+
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
