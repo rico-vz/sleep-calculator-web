@@ -41,6 +41,8 @@ services:
       MYSQL_DATABASE: laravel
       MYSQL_USER: laraveluser
       MYSQL_PASSWORD: laravelpassword
+    ports:
+      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
     networks:
