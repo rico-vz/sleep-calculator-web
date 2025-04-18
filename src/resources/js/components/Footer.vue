@@ -55,9 +55,9 @@ const currentYear = ref(new Date().getFullYear());
                             </Link>
                         </li>
                         <li>
-                            <Link href="/contact" class="text-sm text-muted-foreground hover:text-primary">
+                            <a href="mailto:contact@sleeputility.com" class="text-sm text-muted-foreground hover:text-primary">
                             Email
-                            </Link>
+                            </a>
                         </li>
                         <li>
                             <Link href="/privacy" class="text-sm text-muted-foreground hover:text-primary">
