@@ -46,4 +46,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function sleepPreferences()
+    {
+        return $this->hasOne(SleepPreferences::class);
+    }
 }

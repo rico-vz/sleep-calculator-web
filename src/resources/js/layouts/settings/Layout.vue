@@ -11,6 +11,10 @@ const sidebarNavItems: NavItem[] = [
         href: '/settings/profile',
     },
     {
+        title: 'Sleep Preferences',
+        href: '/settings/sleep-preferences',
+    },
+    {
         title: 'Password',
         href: '/settings/password',
     },
@@ -18,6 +22,7 @@ const sidebarNavItems: NavItem[] = [
         title: 'Appearance',
         href: '/settings/appearance',
     },
+
 ];
 
 const page = usePage<SharedData>();

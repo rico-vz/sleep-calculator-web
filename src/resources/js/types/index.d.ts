@@ -21,6 +21,7 @@ export interface NavItem {
 export interface SharedData extends PageProps {
     name: string;
     auth: Auth;
+    sleepPreferences: SleepPreferences;
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
 }
@@ -33,6 +34,11 @@ export interface User {
     email_verified_at: string | null;
     created_at: string;
     updated_at: string;
+    sleep_preferences: SleepPreferences;
+}
+
+export interface SleepPreferences {
+    fall_asleep_time: int;
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;

@@ -7,6 +7,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Auth\Events\Registered;
 
 class GoogleAuthController extends Controller
 {
@@ -36,6 +37,8 @@ class GoogleAuthController extends Controller
                 'email_verified_at' => now(),
                 'requires_password_setup' => true,
             ]);
+
+            event(new Registered($newUser));
 
             Auth::login($newUser);
             return redirect()->route('password.setup')->with('success', 'Please set a password for your new account.');

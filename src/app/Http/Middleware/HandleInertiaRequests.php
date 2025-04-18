@@ -37,13 +37,14 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
-
         return [
             ...parent::share($request),
             'name' => config('app.name'),
             'auth' => [
                 'user' => $request->user(),
+            ],
+            'sleepPreferences' => [
+                'fall_asleep_time' => $request->user() ? $request->user()->sleepPreferences->fall_asleep_time : 14,
             ],
             'ziggy' => [
                 ...(new Ziggy)->toArray(),
