@@ -18,7 +18,7 @@ const props = defineProps<SharedData>();
     </Head>
     <div class="flex min-h-screen flex-col">
         <Header :appName="props.name" :auth="props.auth" />
-        <Hero :appName="props.name"/>
+        <Hero :appName="props.name" :time-to-fall-asleep="props.sleepPreferences.fall_asleep_time"/>
         <HowItWorks :appName="props.name" />
         <CTA />
         <Footer :appName="props.name" />

@@ -11,8 +11,12 @@ interface ResultsType {
     type: "wake" | "sleep";
 }
 
-defineProps({
-    appName: String
+const props = defineProps({
+    appName: String,
+    timeToFallAsleep: {
+        type: Number,
+        default: 15
+    }
 });
 
 const activeTab = ref("calculate-bed-time");
@@ -28,7 +32,7 @@ const handleCalculateBedTime = (formData: any) => {
     wakeTime.setMinutes(parseInt(formData.minute));
     const bedTimes = Array.from({ length: 6 }, (_, i) => {
         const bedTime = new Date(wakeTime);
-        bedTime.setMinutes(bedTime.getMinutes() - (i + 1) * 90 - 15);
+        bedTime.setMinutes(bedTime.getMinutes() - (i + 1) * 90 - props.timeToFallAsleep);
         return bedTime;
     }).reverse();
     results.value = { times: bedTimes, type: "sleep" };
@@ -37,7 +41,7 @@ const handleCalculateBedTime = (formData: any) => {
 const handleWakeTimeSubmit = (formData: any) => {
     const sleepTime = new Date();
     sleepTime.setHours(parseInt(formData.hour) + (formData.ampm === 'PM' ? 12 : 0));
-    sleepTime.setMinutes(parseInt(formData.minute) + 15);
+    sleepTime.setMinutes(parseInt(formData.minute) + props.timeToFallAsleep);
     const wakeTimes = Array.from({ length: 6 }, (_, i) => {
         const wakeTime = new Date(sleepTime);
         wakeTime.setMinutes(wakeTime.getMinutes() + (i + 1) * 90);
@@ -143,12 +147,17 @@ const calculateSleepHours = (cycles: number): string => {
                     <div class="mt-6 p-4 bg-muted rounded-lg">
                         <h4 class="font-semibold text-sm mb-2">About Sleep Cycles</h4>
                         <p class="text-xs text-muted-foreground">
-                            Sleep cycles usually last around 90 minutes. Waking up at the end of a cycle, instead of in the
+                            Sleep cycles usually last around 90 minutes. Waking up at the end of a cycle, instead of in
+                            the
                             middle onf one,
-                            helps you feel more refreshed. {{ appName }} adds 15 minutes to account for the average
-                            time
-                            it
-                            takes people to fall asleep.
+                            helps you feel more refreshed.
+                        </p>
+                        <p v-if="timeToFallAsleep !== 15" class="text-xs text-muted-foreground mt-2">
+                            {{ appName }} has taken into account your {{ timeToFallAsleep }} minutes to fall asleep.
+                        </p>
+                        <p v-else class="text-xs text-muted-foreground mt-2">
+                            {{ appName }} adds 15 minutes to account for the average time it takes people to fall
+                            asleep.
                         </p>
                     </div>
                 </div>

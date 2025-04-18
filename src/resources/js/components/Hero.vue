@@ -2,7 +2,8 @@
 import SleepCalculator from './sleep-calculator/SleepCalculator.vue';
 
 const props = defineProps({
-    appName: String
+    appName: String,
+    timeToFallAsleep: Number
 });
 </script>
 
@@ -19,6 +20,6 @@ const props = defineProps({
                 </p>
             </div>
         </div>
-        <SleepCalculator :appName="props.appName" />
+        <SleepCalculator :appName="props.appName" :timeToFallAsleep="props.timeToFallAsleep" />
     </section>
 </template>
