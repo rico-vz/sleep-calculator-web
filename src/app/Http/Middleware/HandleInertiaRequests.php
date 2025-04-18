@@ -44,7 +44,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'sleepPreferences' => [
-                'fall_asleep_time' => $request->user() ? $request->user()->sleepPreferences->fall_asleep_time : 14,
+                'fall_asleep_time' => $request->user() ? $request->user()->sleepPreferences->fall_asleep_time : 15,
             ],
             'ziggy' => [
                 ...(new Ziggy)->toArray(),

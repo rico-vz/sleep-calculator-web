@@ -20,7 +20,7 @@ class CreateSleepPreferences
         if ($user && $user->sleepPreferences()->doesntExist()) {
             SleepPreferences::create([
                 'user_id' => $user->id,
-                'fall_asleep_time' => 14,
+                'fall_asleep_time' => 15,
             ]);
         }
     }
