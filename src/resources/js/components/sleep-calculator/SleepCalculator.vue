@@ -66,7 +66,7 @@ const calculateSleepHours = (cycles: number): string => {
 <template>
     <Card class="w-full max-w-3xl mx-auto p-6 pt-0">
         <CardHeader class="space-y-1 text-center p-6">
-            <CardTitle class="text-2xl font-bold font-montserrat">
+            <CardTitle class="text-2xl font-bold ">
                 {{ appName }} Calculator
             </CardTitle>
             <CardDescription>
@@ -100,7 +100,7 @@ const calculateSleepHours = (cycles: number): string => {
                 leave-active-class="transition-all duration-200 ease-in" leave-from-class="opacity-100"
                 leave-to-class="opacity-0 transform -translate-y-4">
                 <div v-if="results" class="mt-8 pt-6 border-t">
-                    <h3 class="text-lg font-semibold mb-4 font-montserrat">
+                    <h3 class="text-lg font-semibold mb-4 ">
                         {{ results.type === "wake" ? "Optimal Wake-Up Times" : "Optimal Bedtimes" }}
                     </h3>
                     <p class="text-sm text-muted-foreground mb-4">

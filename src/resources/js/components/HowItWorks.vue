@@ -18,7 +18,7 @@ const props = defineProps({
                     <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                         <TimerReset class="h-6 w-6 text-primary" />
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 font-montserrat">Track Sleep Cycles</h3>
+                    <h3 class="text-xl font-semibold mb-2 ">Track Sleep Cycles</h3>
                     <p class="text-muted-foreground">
                         {{ props.appName }} works by calculating natural sleep cycles, which usually last around 90
                         minutes
@@ -30,7 +30,7 @@ const props = defineProps({
                     <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                         <Brain class="h-6 w-6 text-primary" />
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 font-montserrat">Sleep Science</h3>
+                    <h3 class="text-xl font-semibold mb-2 ">Sleep Science</h3>
                     <p class="text-muted-foreground">
                         {{ props.appName }} uses science to help you avoid waking up during deep sleep, preventing
                         grogginess.
@@ -41,7 +41,7 @@ const props = defineProps({
                     <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                         <Coffee class="h-6 w-6 text-primary" />
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 font-montserrat">Better Mornings</h3>
+                    <h3 class="text-xl font-semibold mb-2 ">Better Mornings</h3>
                     <p class="text-muted-foreground">
                         Wake up at the right time in your cycle to feel more refreshed and energized throughout the day.
                     </p>

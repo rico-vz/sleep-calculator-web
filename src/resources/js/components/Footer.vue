@@ -18,7 +18,7 @@ const currentYear = ref(new Date().getFullYear());
                 <div class="space-y-2">
                     <div class="flex items-center gap-2">
                         <AppLogoIcon class="h-6 w-6" />
-                        <span class="text-lg font-bold tracking-tight font-montserrat">
+                        <span class="text-lg font-bold tracking-tight ">
                             {{ props.appName }}
                         </span>
                     </div>
