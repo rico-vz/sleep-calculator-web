@@ -10,7 +10,7 @@ import { computed } from 'vue';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 interface BlogPost {
-    date: string;
+    date: number;
     slug: string;
     title: string;
     categories: string[];
