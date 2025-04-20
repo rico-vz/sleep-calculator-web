@@ -22775,6 +22775,83 @@ namespace Laravel\Socialite\Facades {
             }
     }
 
+namespace Spatie\Sheets\Facades {
+    /**
+     * 
+     *
+     * @method static ?\Spatie\Sheets\Sheet get(string $path)
+     * @see \Spatie\Sheets\Sheets
+     */
+    class Sheets {
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function collection($name)
+        {
+            /** @var \Spatie\Sheets\Sheets $instance */
+            return $instance->collection($name);
+        }
+
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function registerCollection($name, $repository)
+        {
+            /** @var \Spatie\Sheets\Sheets $instance */
+            return $instance->registerCollection($name, $repository);
+        }
+
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function get($path)
+        {
+            /** @var \Spatie\Sheets\Sheets $instance */
+            return $instance->get($path);
+        }
+
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function all()
+        {
+            /** @var \Spatie\Sheets\Sheets $instance */
+            return $instance->all();
+        }
+
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function setDefaultCollection($defaultCollection)
+        {
+            /** @var \Spatie\Sheets\Sheets $instance */
+            return $instance->setDefaultCollection($defaultCollection);
+        }
+
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getRegisteredCollectionNames()
+        {
+            /** @var \Spatie\Sheets\Sheets $instance */
+            return $instance->getRegisteredCollectionNames();
+        }
+
+            }
+    }
+
 namespace Illuminate\Http {
     /**
      * 
@@ -27707,6 +27784,7 @@ namespace  {
     class View extends \Illuminate\Support\Facades\View {}
     class Vite extends \Illuminate\Support\Facades\Vite {}
     class Socialite extends \Laravel\Socialite\Facades\Socialite {}
+    class Sheets extends \Spatie\Sheets\Facades\Sheets {}
 }
 
 
