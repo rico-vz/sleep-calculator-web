@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Sheets\Facades\Sheets;
+use Inertia\Inertia;
+use Spatie\Sheets\Sheet;
 
 class BlogController extends Controller
 {
@@ -11,13 +13,20 @@ class BlogController extends Controller
     {
         $posts = Sheets::collection('posts')->all();
 
-        return view('blog.index', compact('posts'));
+        return Inertia::render('blog/Index', [
+            'posts' => $posts
+        ]);
     }
 
-    public function show($slug)
+    public function show(Sheet $post)
     {
-        $post = Sheets::collection('posts')->get($slug);
+        // Have to cast the contents to string because
+        // Vue doesnt handle HtmlString like Blade would
+        $content = (string) $post->contents;
 
-        return view('blog.show', compact('post'));
+        return Inertia::render('blog/Show', [
+            'post' => $post,
+            'content' => $content,
+        ]);
     }
 }

@@ -4,6 +4,8 @@ import { Search } from 'lucide-vue-next';
 import { SharedData } from '@/types';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+import { computed, ref } from 'vue'
+import { usePage } from '@inertiajs/vue3'
 import {
     Card,
     CardContent,
@@ -19,54 +21,73 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface Author {
-    name: string;
-    avatar: string;
-}
 
 interface BlogPost {
-    id: number;
+    date: number;
+    slug: string;
     title: string;
+    categories: string[];
+    tags: string[];
     excerpt: string;
-    author: Author;
-    date: string;
-    category: string;
+    author: string;
+    contents: {
+        html: string;
+    };
+    path: string;
 }
-
-const blogPosts: BlogPost[] = [
-    {
-        id: 1,
-        title: "lorem ipsum dolor sit amet",
-        excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        author: {
-            name: "Sleep Utility",
-            avatar: "SU",
-        },
-        date: "April 12, 2023",
-        category: "Example 1"
-    },
-    {
-        id: 2,
-        title: "lorem ipsum dolor sit amet",
-        excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        author: {
-            name: "Sleep Utility",
-            avatar: "SU",
-        },
-        date: "March 23, 2023",
-        category: "Example 2"
-    }
-];
-
-const categories: string[] = [
-    "All",
-    "Example 1",
-    "Eample 2",
-    "Example 3",
-];
 
 const props = defineProps<SharedData>();
 
+const page = usePage()
+const posts = computed<BlogPost[]>(() => {
+    return page.props.posts as BlogPost[];
+})
+
+const categories = computed(() => {
+    const allCategories = new Set<string>();
+    posts.value.forEach((post) => {
+        post.categories.forEach((category) => {
+            allCategories.add(category);
+        });
+    });
+
+    return ['All', ...Array.from(allCategories)];
+})
+
+const selectedCategory = ref('All');
+const searchQuery = ref('');
+
+
+const filteredPosts = computed(() => {
+    // Categoryu
+    let results = selectedCategory.value === 'All'
+        ? posts.value
+        : posts.value.filter(post => post.categories.includes(selectedCategory.value));
+
+    // Search
+    if (searchQuery.value.trim()) {
+        const query = searchQuery.value.toLowerCase().trim();
+        results = results.filter(post =>
+            post.title.toLowerCase().includes(query) ||
+            post.excerpt.toLowerCase().includes(query)
+        );
+    }
+
+    return results;
+});
+
+function selectCategory(category: string) {
+    selectedCategory.value = category;
+}
+
+function formatDate(unix: number): string {
+    const date = new Date(unix * 1000);
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
 </script>
 
 <template>
@@ -91,15 +112,15 @@ const props = defineProps<SharedData>();
                         <div class="relative">
                             <Search
                                 class="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                            <Input placeholder="Search articles..." class="pl-10" />
+                            <Input v-model="searchQuery" placeholder="Search articles..." class="pl-10" />
                         </div>
 
                         <div>
                             <h3 class="font-medium mb-3">Categories</h3>
                             <ul class="space-y-2">
                                 <li v-for="category in categories" :key="category">
-                                    <Button :variant="category === 'All' ? 'default' : 'ghost'" size="sm"
-                                        class="w-full justify-start">
+                                    <Button :variant="category === selectedCategory ? 'default' : 'ghost'" size="sm"
+                                        class="w-full justify-start" @click="selectCategory(category)">
                                         {{ category }}
                                     </Button>
                                 </li>
@@ -109,18 +130,18 @@ const props = defineProps<SharedData>();
 
                     <div class="md:col-span-3">
                         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
-                            <Card v-for="post in blogPosts" :key="post.id" class="flex flex-col h-full py-4">
+                            <Card v-for="post in filteredPosts" :key="post.slug" class="flex flex-col h-full py-4">
                                 <CardHeader>
                                     <div class="flex justify-between items-start mb-2">
                                         <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                                            {{ post.category }}
+                                            {{ post.categories.join(', ') }}
                                         </span>
                                     </div>
                                     <CardTitle class="text-xl hover:text-primary transition-colors">
-                                        <Link :href="route('blog.show', post.id)">{{ post.title }}</Link>
+                                        <Link :href="route('blog.show', post.slug)">{{ post.title }}</Link>
                                     </CardTitle>
                                     <CardDescription class="flex items-center gap-2 text-xs pt-2">
-                                        <span>{{ post.date }}</span>
+                                        <span>{{ formatDate(post.date) }}</span>
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent class="flex-grow">
@@ -130,21 +151,21 @@ const props = defineProps<SharedData>();
                                     <div class="flex items-center gap-2">
                                         <Avatar class="h-8 w-8">
                                             <AvatarFallback class="bg-primary/10 text-primary text-xs">
-                                                {{ post.author.avatar }}
+                                                {{ post.author.charAt(0).toUpperCase() }}
                                             </AvatarFallback>
                                         </Avatar>
                                         <div>
-                                            <p class="text-sm font-medium">{{ post.author.name }}</p>
+                                            <p class="text-sm font-medium">{{ post.author }}</p>
                                         </div>
                                     </div>
                                     <Button variant="ghost" size="sm">
-                                        <Link :href="route('blog.show', post.id)">Read More</Link>
+                                        <Link :href="route('blog.show', post.slug)">Read More</Link>
                                     </Button>
                                 </CardFooter>
                             </Card>
                         </div>
 
-                        <div class="flex justify-center mt-10">
+                        <!-- <div class="flex justify-center mt-10">
                             <div class="flex gap-2">
                                 <Button variant="outline" size="sm" disabled>Previous</Button>
                                 <Button size="sm">1</Button>
@@ -152,7 +173,7 @@ const props = defineProps<SharedData>();
                                 <Button variant="outline" size="sm">3</Button>
                                 <Button variant="outline" size="sm">Next</Button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

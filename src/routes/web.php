@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BlogController;
+use Spatie\Sheets\Sheet;
 
 
 Route::get('/', function () {
@@ -28,16 +29,13 @@ Route::get('/faq', function () {
 Route::get('/blog', [BlogController::class, 'index'])
     ->name('blog.index');
 
-Route::get('/blog/{slug}', function ($slug) {
-    return Inertia::render('blog/Show', [
-        'slug' => $slug,
-    ]);
-})->name('blog.show');
+Route::get('/blog/{post}', [BlogController::class, 'show'])
+    ->name('blog.show');
 
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
-require __DIR__.'/socialite.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/socialite.php';
