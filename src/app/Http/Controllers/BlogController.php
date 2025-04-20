@@ -12,6 +12,9 @@ class BlogController extends Controller
     public function index()
     {
         $posts = Sheets::collection('posts')->all();
+        $posts = collect($posts)->sortByDesc(function ($post) {
+            return $post->date;
+        })->values()->all();
 
         return Inertia::render('blog/Index', [
             'posts' => $posts
