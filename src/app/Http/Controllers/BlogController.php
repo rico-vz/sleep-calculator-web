@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Spatie\Sheets\Facades\Sheets;
 use Inertia\Inertia;
 use Spatie\Sheets\Sheet;
