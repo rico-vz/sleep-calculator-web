@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schedule;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+Schedule::command('backup:database')
+    ->dailyAt('02:00')
+    ->sendOutputTo(storage_path('logs/backup.log'))
+    ->emailOutputOnFailure(config('mail.failure_email_to'));
+
+Schedule::command('backup:clean')
+    ->dailyAt('03:00')
+    ->sendOutputTo(storage_path('logs/backup.log'))
+    ->emailOutputOnFailure(config('mail.failure_email_to'));

@@ -113,4 +113,6 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'failure_email_to' => env('FAILURE_EMAIL_TO'),
+
 ];
