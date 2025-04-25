@@ -25,7 +25,29 @@ const submit = () => {
 <template>
     <AuthBase title="Create an account" description="Enter your details below to create your account">
 
-        <Head title="Register" />
+        <Head>
+            <title>Register</title>
+            <meta name="description"
+                content="Create a free account with SleepUtility to save your sleep preferences and access personalized features." />
+
+            <!-- Search Engine -->
+            <meta itemprop="name" content="SleepUtility" />
+            <meta itemprop="description"
+                content="Create a free account with SleepUtility to save your sleep preferences and access personalized features." />
+
+            <!-- OpenGraph -->
+            <meta property="og:url" :content="route('register')" />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="Register - SleepUtility" />
+            <meta property="og:description"
+                content="Create a free account with SleepUtility to save your sleep preferences and access personalized features." />
+
+            <!-- Twitter -->
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content="Register - SleepUtility" />
+            <meta name="twitter:description"
+                content="Create a free account with SleepUtility to save your sleep preferences and access personalized features." />
+        </Head>
 
         <form @submit.prevent="submit" class="flex flex-col gap-6">
             <div class="grid gap-6">

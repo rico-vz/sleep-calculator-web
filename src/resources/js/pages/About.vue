@@ -11,7 +11,30 @@ const props = defineProps<SharedData>();
 
 <template>
 
-    <Head title="About" />
+    <Head>
+        <title>About</title>
+        <!-- Generic -->
+        <meta name="description"
+            :content="`Learn about ${props.name}, the science behind sleep cycles, and our mission to help you wake up refreshed.`" />
+
+        <!-- Search Engine -->
+        <meta itemprop="name" :content="props.name" />
+        <meta itemprop="description"
+            :content="`Learn about ${props.name}, the science behind sleep cycles, and our mission to help you wake up refreshed.`" />
+
+        <!-- OpenGraph -->
+        <meta property="og:url" content="https://sleeputility.com/about" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" :content="`About - ${props.name}`" />
+        <meta property="og:description"
+            :content="`Learn about ${props.name}, the science behind sleep cycles, and our mission to help you wake up refreshed.`" />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" :content="`About - ${props.name}`" />
+        <meta name="twitter:description"
+            :content="`Learn about ${props.name}, the science behind sleep cycles, and our mission to help you wake up refreshed.`" />
+    </Head>
     <div class="flex min-h-screen flex-col">
         <Header :appName="props.name" :auth="props.auth" />
         <main class="flex-1">

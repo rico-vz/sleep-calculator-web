@@ -30,7 +30,30 @@ const submit = () => {
 <template>
     <AuthBase title="Log in to your account" description="Enter your email and password below to log in">
 
-        <Head title="Log in" />
+        <Head>
+            <title>Log in</title>
+            <!-- Generic -->
+            <meta name="description"
+                content="Log in to your SleepUtility account to access your saved preferences and personalized sleep calculations." />
+
+            <!-- Search Engine -->
+            <meta itemprop="name" content="SleepUtility" />
+            <meta itemprop="description"
+                content="Log in to your SleepUtility account to access your saved preferences and personalized sleep calculations." />
+
+            <!-- OpenGraph -->
+            <meta property="og:url" :content="route('login')" />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="Log in - SleepUtility" />
+            <meta property="og:description"
+                content="Log in to your SleepUtility account to access your saved preferences and personalized sleep calculations." />
+
+            <!-- Twitter -->
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content="Log in - SleepUtility" />
+            <meta name="twitter:description"
+                content="Log in to your SleepUtility account to access your saved preferences and personalized sleep calculations." />
+        </Head>
 
         <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
             {{ status }}

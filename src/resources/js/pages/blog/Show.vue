@@ -44,7 +44,26 @@ function formatDate(unix: number): string {
 
 <template>
 
-    <Head :title="post.title" />
+    <Head>
+        <title>{{ post.title }}</title>
+        <!-- Generic -->
+        <meta name="description" :content="post.excerpt" />
+
+        <!-- Search Engine -->
+        <meta itemprop="name" :content="post.title" />
+        <meta itemprop="description" :content="post.excerpt" />
+
+        <!-- OpenGraph -->
+        <meta property="og:url" :content="route('blog.show', post.slug)" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" :content="post.title" />
+        <meta property="og:description" :content="post.excerpt" />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" :content="post.title" />
+        <meta name="twitter:description" :content="post.excerpt" />
+    </Head>
 
     <div class="flex min-h-screen flex-col">
         <Header :appName="props.name" :auth="props.auth" />
