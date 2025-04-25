@@ -83,7 +83,7 @@ const sleepNow = () => {
             </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Button type="submit" size="lg" class="w-full">
                 Calculate Waketime
             </Button>

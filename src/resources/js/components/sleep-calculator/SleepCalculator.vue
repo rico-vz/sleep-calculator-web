@@ -79,7 +79,7 @@ const calculateSleepHours = (cycles: number): string => {
         </CardHeader>
         <CardContent>
             <Tabs v-model="activeTab" default-value="calculate-bed-time">
-                <TabsList class="grid grid-cols-2 mb-6">
+                <TabsList class="grid grid-cols-1 sm:grid-cols-2 mb-6">
                     <TabsTrigger value="calculate-bed-time" class="space-x-2">
                         <Moon class="h-4 w-4" />
                         <span>Calculate bed time</span>
