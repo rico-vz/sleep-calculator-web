@@ -84,10 +84,10 @@ const sleepNow = () => {
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <Button type="submit" size="lg" class="w-full">
+            <Button type="submit" size="lg" class="w-full plausible-event-name=Calculate+Waketime">
                 Calculate Waketime
             </Button>
-            <Button type="button" size="lg" class="w-full" variant="outline" @click="sleepNow">
+            <Button type="button" size="lg" class="w-full plausible-event-name=Sleep+Now" variant="outline" @click="sleepNow">
                 <Moon class="mr-2 h-4 w-4" />
                 Sleep Now
             </Button>

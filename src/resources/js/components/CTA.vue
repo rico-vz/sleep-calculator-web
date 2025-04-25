@@ -16,7 +16,7 @@ import { Link } from '@inertiajs/vue3';
             </p>
             <div class="flex gap-4 justify-center">
                 <Link href="/register">
-                <Button size="lg">
+                <Button size="lg" class="plausible-event-name=CTA+GetStartedNow">
                     <Heart />
                     Get Started Now
                 </Button>

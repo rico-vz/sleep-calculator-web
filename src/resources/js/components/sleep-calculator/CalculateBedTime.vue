@@ -64,7 +64,7 @@ const handleSubmit = (e: Event) => {
             </div>
         </div>
 
-        <Button type="submit" size="lg" class="w-full">
+        <Button type="submit" size="lg" class="w-full plausible-event-name=Calculate+Bedtime">
             Calculate Bedtime
         </Button>
     </form>
