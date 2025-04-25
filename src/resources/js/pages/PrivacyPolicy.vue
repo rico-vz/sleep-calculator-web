@@ -104,7 +104,7 @@ const lastUpdatedDate = new Date('2025-04-18').toLocaleDateString('en-US', {
                             <li>Withdraw consent at any time where processing is based on consent</li>
                         </ul>
                         <p class="text-muted-foreground mb-4">
-                            You can exercise these rights by contacting us at privacy@example.com.
+                            You can exercise these rights by contacting us at contact@sleeputility.com.
                         </p>
                     </section>
 
@@ -158,7 +158,7 @@ const lastUpdatedDate = new Date('2025-04-18').toLocaleDateString('en-US', {
                     <section>
                         <h2 class="text-2xl font-bold mb-4">10. Contact Us</h2>
                         <p class="text-muted-foreground mb-4">
-                            If you have any questions about this Privacy Policy, please contact us at privacy@example.com.
+                            If you have any questions about this Privacy Policy, please contact us at contact@sleeputility.com.
                         </p>
                         <p class="text-muted-foreground mb-4">
                             Last updated: {{ lastUpdatedDate }}

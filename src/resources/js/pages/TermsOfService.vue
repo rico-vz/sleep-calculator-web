@@ -108,7 +108,7 @@ const props = defineProps<SharedData>();
                     <section>
                         <h2 class="text-2xl font-bold mb-4">9. Contact Us</h2>
                         <p class="text-muted-foreground mb-4">
-                            If you have any questions about these Terms, please contact us at support@example.com.
+                            If you have any questions about these Terms, please contact us at contact@sleeputility.com.
                         </p>
                         <p class="text-muted-foreground mb-4">
                             Last updated: {{ lastUpdatedDate }}
