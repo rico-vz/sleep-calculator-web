@@ -47,10 +47,6 @@ createServer((page) =>
 
             return app;
         },
-    }).then((app) => {
-        const appRender = app;
-        appRender.body = appRender.body.replace(/data-page=".*?"/, '');
-        return appRender;
     }),
     13716
 );
