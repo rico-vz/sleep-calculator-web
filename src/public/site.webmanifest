@@ -1,5 +1,5 @@
 {
-  "name": "Sleep Utility",
+  "name": "SleepUtility.com",
   "short_name": "SleepUtility",
   "icons": [
     {
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#0f1411",
-  "background_color": "#0f1411",
+  "theme_color": "#22c55e",
+  "background_color": "#22c55e",
   "display": "standalone"
 }
