@@ -122,7 +122,11 @@ const calculateSleepHours = (cycles: number): string => {
 
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                         <Card v-for="(time, index) in results.times" :key="index"
-                            :class="`overflow-hidden ${(results.type === 'wake' ? index === 4 : index === 1) ? 'border-primary border-2' : ''}`">
+                            :class="`relative ${(results.type === 'wake' ? index === 4 : index === 1) ? 'border-primary border-2' : ''}`">
+                            <p v-if="results.type === 'wake' && index === 4 || results.type === 'sleep' && index === 1"
+                                class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs bg-card text-primary px-2 py-0.5 rounded-full font-medium">
+                                Recommended
+                            </p>
                             <CardContent class="p-4">
                                 <div class="flex items-center justify-between">
                                     <div>
@@ -143,10 +147,6 @@ const calculateSleepHours = (cycles: number): string => {
                                         </p>
                                     </div>
                                 </div>
-                                <p v-if="results.type === 'wake' && index === 4 || results.type === 'sleep' && index === 1"
-                                    class="text-xs mt-2 text-primary-foreground bg-primary px-1.5 py-0.5 rounded-sm font-medium inline-block">
-                                    Recommended
-                                </p>
                             </CardContent>
                         </Card>
                     </div>
