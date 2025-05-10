@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import CalculateBedTime from './CalculateBedTime.vue';
 import CalculateWakeTime from './CalculateWakeTime.vue';
 import { Moon, Sun } from 'lucide-vue-next';
+import { Button } from "@/components/ui/button";
 
 interface ResultsType {
     times: Date[];
@@ -78,26 +78,33 @@ const calculateSleepHours = (cycles: number): string => {
             </CardDescription>
         </CardHeader>
         <CardContent>
-            <Tabs v-model="activeTab" default-value="calculate-bed-time">
-                <TabsList class="grid grid-cols-1 sm:grid-cols-2 mb-6">
-                    <TabsTrigger value="calculate-bed-time" class="space-x-2">
-                        <Moon class="h-4 w-4" />
-                        <span>Calculate bed time</span>
-                    </TabsTrigger>
-                    <TabsTrigger value="calculate-wake-time" class="space-x-2">
-                        <Sun class="h-4 w-4" />
-                        <span>Calculate wake time</span>
-                    </TabsTrigger>
-                </TabsList>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <Button
+                    @click="activeTab = 'calculate-bed-time'"
+                    :variant="activeTab === 'calculate-bed-time' ? 'default' : 'outline'"
+                    class="space-x-2 w-full"
+                >
+                    <Moon class="h-4 w-4" />
+                    <span>Calculate bed time</span>
+                </Button>
+                <Button
+                    @click="activeTab = 'calculate-wake-time'"
+                    :variant="activeTab === 'calculate-wake-time' ? 'default' : 'outline'"
+                    class="space-x-2 w-full"
+                >
+                    <Sun class="h-4 w-4" />
+                    <span>Calculate wake time</span>
+                </Button>
+            </div>
 
-                <TabsContent value="calculate-bed-time" class="space-y-4">
-                    <CalculateBedTime @submit="handleCalculateBedTime" />
-                </TabsContent>
+            <div v-if="activeTab === 'calculate-bed-time'" class="space-y-4">
+                <CalculateBedTime @submit="handleCalculateBedTime" />
+            </div>
 
-                <TabsContent value="calculate-wake-time">
-                    <CalculateWakeTime @submit="handleWakeTimeSubmit" />
-                </TabsContent>
-            </Tabs>
+            <div v-if="activeTab === 'calculate-wake-time'">
+                <CalculateWakeTime @submit="handleWakeTimeSubmit" />
+            </div>
+
             <Transition enter-active-class="transition-all duration-300 ease-out"
                 enter-from-class="opacity-0 transform -translate-y-4"
                 enter-to-class="opacity-100 transform translate-y-0"
