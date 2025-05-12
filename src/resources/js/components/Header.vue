@@ -17,11 +17,12 @@ const props = defineProps<Props>();
         <div class="container flex h-16 max-w-screen-xl items-center justify-between">
             <div class="flex items-center gap-2">
                 <Link :href="route('home')">
-                <img src="/img/sleeputility-logo-transparent.png" alt="SleepUtility Logo" class="h-8 w-8 rounded-full" />
+                <img src="/img/sleeputility-logo-transparent.png" alt="SleepUtility Logo"
+                    class="h-8 w-8 rounded-full" />
                 </Link>
                 <div class="flex flex-col">
                     <span class="text-xl font-bold tracking-tight text-foreground">
-                        {{ appName }}
+                        <Link :href="route('home')">{{ appName }}</Link>
                     </span>
                     <span class="text-xs text-muted-foreground">
                         Optimize your sleep 💤
