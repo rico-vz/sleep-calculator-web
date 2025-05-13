@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BlogController;
-use Spatie\Sheets\Sheet;
 use App\Http\Controllers\ChangelogController;
 
 
@@ -39,6 +38,8 @@ Route::get('/changelog', [ChangelogController::class, 'show'])
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::passkeys();
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';

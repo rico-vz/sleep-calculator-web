@@ -6,8 +6,9 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, useForm, router } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
+import { startAuthentication } from '@simplewebauthn/browser';
 
 defineProps<{
     status?: string;
@@ -25,6 +26,18 @@ const submit = () => {
         onFinish: () => form.reset('password'),
     });
 };
+
+async function withPassKey() {
+    const response = await fetch(route("passkeys.authentication_options"));
+    const options = await response.json();
+    const startAuthenticationResponse = await startAuthentication({ optionsJSON: options });
+
+    router.post(route("passkeys.login"), {
+        start_authentication_response: JSON.stringify(
+            startAuthenticationResponse
+        )
+    });
+}
 </script>
 
 <template>
@@ -99,11 +112,16 @@ const submit = () => {
                 <span class="h-px w-full bg-border/40" />
             </div>
             <div class="flex items-center justify-center gap-2">
-                <a :href="route('auth.google.redirect')" class="w-full">
+                <a :href="route('auth.google.redirect')" class="w-1/2">
                     <Button type="button" class="w-full" variant="outline" :disabled="form.processing">
                         Log in using Google
                     </Button>
                 </a>
+                <div class="w-1/2">
+                    <Button @click="withPassKey" type="button" class="w-full" variant="outline" :disabled="form.processing">
+                        Log with a passkey
+                    </Button>
+                </div>
             </div>
 
             <div class="text-center text-sm text-muted-foreground">
