@@ -65,6 +65,11 @@ return [
             'root' => base_path('content/posts'),
         ],
 
+        'changelog' => [
+            'driver' => 'local',
+            'root' => base_path('content/changelog'),
+        ],
+
     ],
 
     /*

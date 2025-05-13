@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BlogController;
 use Spatie\Sheets\Sheet;
+use App\Http\Controllers\ChangelogController;
 
 
 Route::get('/', function () {
@@ -31,6 +32,9 @@ Route::get('/blog', [BlogController::class, 'index'])
 
 Route::get('/blog/{post}', [BlogController::class, 'show'])
     ->name('blog.show');
+
+Route::get('/changelog', [ChangelogController::class, 'show'])
+    ->name('changelog.show');
 
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
