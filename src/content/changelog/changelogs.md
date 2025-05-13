@@ -21,6 +21,8 @@ SleepUtility is constantly being updated to provide you with the best experience
   - Made the navbar title clickable for easier navigation back to the homepage.
   - Improved user experience by allowing users to return to the homepage from the dashboard with a single click.
   - Created a dedicated changelogs page for users to easily track updates and changes. (Hello, you are here!)
+- **New Features**:
+  - Implemented passkey authentication.
 
 ## Version 1.0.2 (2025-05-10)
 
