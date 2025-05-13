@@ -22968,6 +22968,18 @@ namespace Illuminate\Routing {
             return \Illuminate\Routing\Router::inertia($uri, $component, $props);
         }
 
+        /**
+         * 
+         *
+         * @see \Spatie\LaravelPasskeys\LaravelPasskeysServiceProvider::registerPasskeyRouteMacro()
+         * @param string $prefix
+         * @static 
+         */
+        public static function passkeys($prefix = 'passkeys')
+        {
+            return \Illuminate\Routing\Router::passkeys($prefix);
+        }
+
             }
     }
 
