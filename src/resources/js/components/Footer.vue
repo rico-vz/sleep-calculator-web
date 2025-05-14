@@ -69,12 +69,12 @@ const currentYear = ref(new Date().getFullYear());
                 <div>
                     <h3 class="font-medium mb-3 text-foreground/90">Social</h3>
                     <ul class="space-y-2">
-                        <!-- <li>
-                            <a href="https://producthunt.com" target="_blank" rel="noopener noreferrer"
+                        <li>
+                            <a href="https://www.producthunt.com/posts/sleeputility?utm_source=sleeputility" target="_blank" rel="noopener noreferrer"
                                 class="text-sm text-muted-foreground hover:text-primary">
                                 ProductHunt
                             </a>
-                        </li> -->
+                        </li>
                     </ul>
                 </div>
             </div>
