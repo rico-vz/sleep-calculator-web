@@ -75,17 +75,19 @@ const getHighlightClass = (cycles: number): string => {
                     <div class="flex-1">
                         <Label for="hour" class="text-xs">Wake at</Label>
                         <div class="flex gap-1">
-                            <select id="hour" v-model="wakeTime.hour" class="flex-1 h-8 text-xs rounded-md border px-1">
+                            <select id="hour" v-model="wakeTime.hour"
+                                class="flex-1 h-8 text-xs rounded-md border px-1 border-input bg-background ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
                                 <option v-for="hour in hourOptions" :key="hour" :value="hour">{{ hour }}</option>
                             </select>
                             <select id="minute" v-model="wakeTime.minute"
-                                class="flex-1 h-8 text-xs rounded-md border px-1">
+                                class="flex-1 h-8 text-xs rounded-md border px-1 border-input bg-background ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
                                 <option v-for="minute in minuteOptions" :key="minute"
                                     :value="minute.toString().padStart(2, '0')">
                                     {{ minute.toString().padStart(2, '0') }}
                                 </option>
                             </select>
-                            <select id="ampm" v-model="wakeTime.ampm" class="flex-1 h-8 text-xs rounded-md border px-1">
+                            <select id="ampm" v-model="wakeTime.ampm"
+                                class="flex-1 h-8 text-xs rounded-md border px-1 border-input bg-background ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
@@ -94,7 +96,7 @@ const getHighlightClass = (cycles: number): string => {
                     <Button @click="calculateBedTimes()" size="sm" class="h-8">Calculate</Button>
                 </div>
 
-                <div class="mt-auto flex items-center gap-2 py-2 px-3 bg-muted/50 rounded-lg">
+                <div class="mt-auto hidden 2xl:flex items-center gap-2 py-2 px-3 bg-muted/50 rounded-lg">
                     <div class="h-10 w-10 rounded-full flex items-center justify-center bg-primary/10 text-primary">
                         <Moon class="h-5 w-5" />
                     </div>
