@@ -39,6 +39,18 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('dashboard/backups', [\App\Http\Controllers\BackupsController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard.backups');
+
+Route::get('dashboard/backups/{filename}', [\App\Http\Controllers\BackupsController::class, 'download'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard.backups.download');
+
+Route::delete('dashboard/backups/{filename}', [\App\Http\Controllers\BackupsController::class, 'delete'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard.backups.delete');
+
 Route::passkeys();
 
 require __DIR__ . '/settings.php';

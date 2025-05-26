@@ -42,6 +42,8 @@ class HandleInertiaRequests extends Middleware
             'name' => config('app.name'),
             'auth' => [
                 'user' => $request->user(),
+                'roles' => $request->user() ? $request->user()->roles->pluck('name') : [],
+                'permissions' => $request->user() ? $request->user()->getPermissionsViaRoles()->pluck('name') : [],
             ],
             'sleepPreferences' => [
                 'fall_asleep_time' => $request->user() ? $request->user()->sleepPreferences->fall_asleep_time : 15,
