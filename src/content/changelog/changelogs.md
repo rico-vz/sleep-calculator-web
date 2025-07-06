@@ -15,6 +15,13 @@ author: SleepUtility
 
 SleepUtility is constantly being updated to provide you with the best experience. Below are the latest updates and changes made to our website.
 
+## Version 1.0.4 (2025-07-06)
+
+- **Improvements**:
+  - Fixed a bug where the sleep cycle calculator would not correctly handle 12 AM/PM times.
+- **Content**:
+  - Published a new blog post: [The 7 Best SleepyTi.me Alternatives for a Better Sleep in 2025](https://sleeputility.com/blog/the-7-best-sleepytime-alternatives-for-a-better-sleep-in-2025).
+
 ## Version 1.0.3 (2025-05-13)
 
 - **Improvements**:
