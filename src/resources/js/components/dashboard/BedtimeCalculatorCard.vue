@@ -24,7 +24,13 @@ const results = ref<Date[]>([]);
 
 const calculateBedTimes = () => {
     const now = new Date();
-    now.setHours(parseInt(wakeTime.value.hour) + (wakeTime.value.ampm === 'PM' ? 12 : 0));
+    let hours = parseInt(wakeTime.value.hour);
+    if (wakeTime.value.ampm === 'AM' && hours === 12) {
+        hours = 0;
+    } else if (wakeTime.value.ampm === 'PM' && hours !== 12) {
+        hours += 12;
+    }
+    now.setHours(hours);
     now.setMinutes(parseInt(wakeTime.value.minute));
 
     const bedTimes = Array.from({ length: 4 }, (_, i) => {

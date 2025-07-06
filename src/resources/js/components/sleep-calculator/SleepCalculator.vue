@@ -28,7 +28,13 @@ watch(activeTab, () => {
 
 const handleCalculateBedTime = (formData: any) => {
     const wakeTime = new Date();
-    wakeTime.setHours(parseInt(formData.hour) + (formData.ampm === 'PM' ? 12 : 0));
+    let hours = parseInt(formData.hour);
+    if (formData.ampm === 'AM' && hours === 12) {
+        hours = 0;
+    } else if (formData.ampm === 'PM' && hours !== 12) {
+        hours += 12;
+    }
+    wakeTime.setHours(hours);
     wakeTime.setMinutes(parseInt(formData.minute));
     const bedTimes = Array.from({ length: 6 }, (_, i) => {
         const bedTime = new Date(wakeTime);
@@ -40,7 +46,13 @@ const handleCalculateBedTime = (formData: any) => {
 
 const handleWakeTimeSubmit = (formData: any) => {
     const sleepTime = new Date();
-    sleepTime.setHours(parseInt(formData.hour) + (formData.ampm === 'PM' ? 12 : 0));
+    let hours = parseInt(formData.hour);
+    if (formData.ampm === 'AM' && hours === 12) {
+        hours = 0;
+    } else if (formData.ampm === 'PM' && hours !== 12) {
+        hours += 12;
+    }
+    sleepTime.setHours(hours);
     sleepTime.setMinutes(parseInt(formData.minute) + props.timeToFallAsleep);
     const wakeTimes = Array.from({ length: 6 }, (_, i) => {
         const wakeTime = new Date(sleepTime);
