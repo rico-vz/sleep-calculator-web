@@ -83,6 +83,13 @@ const currentYear = ref(new Date().getFullYear());
                 <p class="text-xs text-muted-foreground">
                     &copy; {{ currentYear }} {{ appName }}. All rights reserved.
                 </p>
+                <p class="text-xs text-muted-foreground">
+                    Developed by
+                    <a href="https://zensodigital.com" class="text-xs text-muted-foreground hover:text-primary">
+                        Zenso Digital
+                    </a>
+                </p>
+
                 <div class="flex space-x-4">
                     <Link href="/changelog" class="text-xs text-muted-foreground hover:text-primary">
                     Changelog
