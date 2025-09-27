@@ -20,8 +20,8 @@
     @routes
     @vite(['resources/js/app.ts'])
     @inertiaHead
-    <script defer data-domain="sleeputility.com" src="https://a.raining.win/js/script.hash.outbound-links.tagged-events.js"></script>
-    <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+    <script defer src="https://pulse.zensodigital.com/script.js" data-website-id="5345b316-79a7-450b-b4a1-ddc78de939a9">
+    </script>
 </head>
 
 <body class="bg-background text-foreground font-sans antialiased">
