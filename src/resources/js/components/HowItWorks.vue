@@ -13,7 +13,7 @@ const props = defineProps({
 
             <div class="grid gap-8 md:grid-cols-3">
                 <div
-                    class="animate-in fade-in slide-in-from-bottom-3 bg-card flex flex-col items-center rounded-2xl p-7 text-center shadow-[0_1px_1px_rgba(0,0,0,0.04),0_12px_32px_rgba(10,14,22,0.08)] ring-1 ring-black/5 duration-700 dark:ring-white/10"
+                    class="bg-card flex flex-col items-center rounded-2xl p-7 text-center shadow-[0_1px_1px_rgba(0,0,0,0.04),0_12px_32px_rgba(10,14,22,0.08)] ring-1 ring-black/5 dark:ring-white/10"
                 >
                     <div class="bg-primary/10 ring-primary/20 mb-4 flex h-12 w-12 items-center justify-center rounded-full ring-1">
                         <TimerReset class="text-primary h-6 w-6" />
@@ -25,7 +25,7 @@ const props = defineProps({
                 </div>
 
                 <div
-                    class="animate-in fade-in slide-in-from-bottom-3 bg-card flex flex-col items-center rounded-2xl p-7 text-center shadow-[0_1px_1px_rgba(0,0,0,0.04),0_12px_32px_rgba(10,14,22,0.08)] ring-1 ring-black/5 duration-700 [animation-delay:120ms] dark:ring-white/10"
+                    class="bg-card flex flex-col items-center rounded-2xl p-7 text-center shadow-[0_1px_1px_rgba(0,0,0,0.04),0_12px_32px_rgba(10,14,22,0.08)] ring-1 ring-black/5 dark:ring-white/10"
                 >
                     <div class="bg-primary/10 ring-primary/20 mb-4 flex h-12 w-12 items-center justify-center rounded-full ring-1">
                         <Brain class="text-primary h-6 w-6" />
@@ -37,7 +37,7 @@ const props = defineProps({
                 </div>
 
                 <div
-                    class="animate-in fade-in slide-in-from-bottom-3 bg-card flex flex-col items-center rounded-2xl p-7 text-center shadow-[0_1px_1px_rgba(0,0,0,0.04),0_12px_32px_rgba(10,14,22,0.08)] ring-1 ring-black/5 duration-700 [animation-delay:240ms] dark:ring-white/10"
+                    class="bg-card flex flex-col items-center rounded-2xl p-7 text-center shadow-[0_1px_1px_rgba(0,0,0,0.04),0_12px_32px_rgba(10,14,22,0.08)] ring-1 ring-black/5 dark:ring-white/10"
                 >
                     <div class="bg-primary/10 ring-primary/20 mb-4 flex h-12 w-12 items-center justify-center rounded-full ring-1">
                         <Coffee class="text-primary h-6 w-6" />
