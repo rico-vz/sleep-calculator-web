@@ -12,8 +12,8 @@ const currentYear = ref(new Date().getFullYear());
 
 <template>
     <footer
-        class="border-t border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-6">
-        <div class="container max-w-screen-xl">
+        class="border-t border-border/40 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 py-6">
+        <div class="container max-w-(--breakpoint-xl)">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="space-y-2">
                     <div class="flex items-center gap-2">

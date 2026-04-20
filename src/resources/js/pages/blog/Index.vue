@@ -144,7 +144,7 @@ function formatDate(unix: number): string {
                                         <span>{{ formatDate(post.date) }}</span>
                                     </CardDescription>
                                 </CardHeader>
-                                <CardContent class="flex-grow">
+                                <CardContent class="grow">
                                     <p class="text-muted-foreground text-sm">{{ post.excerpt }}</p>
                                 </CardContent>
                                 <CardFooter class="border-t pt-4 flex justify-between items-center">
