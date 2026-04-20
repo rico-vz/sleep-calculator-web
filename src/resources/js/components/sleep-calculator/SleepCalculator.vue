@@ -3,7 +3,7 @@ import { ref, watch } from 'vue';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import CalculateBedTime from './CalculateBedTime.vue';
 import CalculateWakeTime from './CalculateWakeTime.vue';
-import { Moon, Sun } from 'lucide-vue-next';
+import { Moon, Sun } from '@lucide/vue';
 import { Button } from "@/components/ui/button";
 
 interface ResultsType {

@@ -13,8 +13,8 @@ const props = defineProps<Props>();
 
 <template>
     <header
-        class="border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div class="container flex h-16 max-w-screen-xl items-center justify-between">
+        class="border-b border-border/40 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+        <div class="container flex h-16 max-w-(--breakpoint-xl) items-center justify-between">
             <div class="flex items-center gap-2">
                 <Link :href="route('home')">
                 <img src="/img/sleeputility-logo-transparent.png" alt="SleepUtility Logo"

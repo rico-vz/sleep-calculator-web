@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { ref } from 'vue';
-import { Moon } from 'lucide-vue-next';
+import { Moon } from '@lucide/vue';
 
 const emit = defineEmits(['submit']);
 

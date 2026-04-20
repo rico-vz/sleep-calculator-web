@@ -6,15 +6,13 @@ import { computed, ref } from 'vue'
 import { Button } from '@/components/ui/button';
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from '@/components/ui/dialog';
-import { Download, Trash2 } from 'lucide-vue-next';
+import { Download, Trash2 } from '@lucide/vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -72,7 +70,7 @@ const cancelDelete = () => {
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
             <div
-                class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border md:min-h-min">
+                class="relative min-h-screen flex-1 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border md:min-h-min">
                 <div class="p-4">
                     <h1 class="text-2xl font-bold mb-4">Backups</h1>
                     <table class="w-full table-auto">

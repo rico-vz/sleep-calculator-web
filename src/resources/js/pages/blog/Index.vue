@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { Search } from 'lucide-vue-next';
+import { Search } from '@lucide/vue';
 import { SharedData } from '@/types';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
@@ -144,7 +144,7 @@ function formatDate(unix: number): string {
                                         <span>{{ formatDate(post.date) }}</span>
                                     </CardDescription>
                                 </CardHeader>
-                                <CardContent class="flex-grow">
+                                <CardContent class="grow">
                                     <p class="text-muted-foreground text-sm">{{ post.excerpt }}</p>
                                 </CardContent>
                                 <CardFooter class="border-t pt-4 flex justify-between items-center">
