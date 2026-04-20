@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { Search } from 'lucide-vue-next';
+import { Search } from '@lucide/vue';
 import { SharedData } from '@/types';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';

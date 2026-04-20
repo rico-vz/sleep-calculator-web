@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button';
-import { Heart } from 'lucide-vue-next';
+import { Heart } from '@lucide/vue';
 import { Link } from '@inertiajs/vue3';
 </script>
 

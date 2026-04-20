@@ -12,7 +12,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
-import { Download, Trash2 } from 'lucide-vue-next';
+import { Download, Trash2 } from '@lucide/vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

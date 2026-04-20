@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Brain, TimerReset, Coffee } from "lucide-vue-next";
+import { Brain, TimerReset, Coffee } from "@lucide/vue";
 
 const props = defineProps({
     appName: String

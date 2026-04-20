@@ -2,7 +2,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { Moon } from 'lucide-vue-next';
+import { Moon } from '@lucide/vue';
 import { ref } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import { type SharedData, type User } from '@/types';

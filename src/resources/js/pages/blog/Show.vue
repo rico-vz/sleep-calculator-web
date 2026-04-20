@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link, usePage } from '@inertiajs/vue3';
-import { ArrowLeft, Calendar, Tag } from 'lucide-vue-next';
+import { ArrowLeft, Calendar, Tag } from '@lucide/vue';
 import { SharedData } from '@/types';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
