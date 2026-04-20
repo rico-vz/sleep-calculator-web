@@ -44,9 +44,9 @@ const props = defineProps<SharedData>();
             content="Optimize your sleep with SleepUtility. Calculate the best times to fall asleep and wake up based on sleep cycles."
         />
     </Head>
-    <div class="bg-background relative flex min-h-screen flex-col overflow-x-clip">
+    <div class="bg-background relative isolate flex min-h-screen flex-col overflow-x-clip">
         <div
-            class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[480px] bg-[radial-gradient(circle_at_top,_hsl(var(--primary)/0.18),_transparent_65%)]"
+            class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[480px] bg-[radial-gradient(circle_at_top,color-mix(in_srgb,var(--primary)_18%,transparent),transparent_65%)]"
         />
         <Header :appName="props.name" :auth="props.auth" />
         <Hero :appName="props.name" :time-to-fall-asleep="props.sleepPreferences.fall_asleep_time" />

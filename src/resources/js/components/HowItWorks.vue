@@ -9,7 +9,7 @@ const props = defineProps({
 <template>
     <section class="bg-muted/35 py-16">
         <div class="container mx-auto max-w-5xl px-4">
-            <h2 class="mb-12 text-center text-3xl font-bold tracking-tight [text-wrap:balance]">How it works</h2>
+            <h2 class="mb-12 text-center text-3xl font-bold tracking-tight text-balance">How it works</h2>
 
             <div class="grid gap-8 md:grid-cols-3">
                 <div
@@ -18,8 +18,8 @@ const props = defineProps({
                     <div class="bg-primary/10 ring-primary/20 mb-4 flex h-12 w-12 items-center justify-center rounded-full ring-1">
                         <TimerReset class="text-primary h-6 w-6" />
                     </div>
-                    <h3 class="mb-2 text-xl font-semibold [text-wrap:balance]">Track Sleep Cycles</h3>
-                    <p class="text-muted-foreground [text-wrap:pretty]">
+                    <h3 class="mb-2 text-xl font-semibold text-balance">Track Sleep Cycles</h3>
+                    <p class="text-muted-foreground text-pretty">
                         {{ props.appName }} works by calculating natural sleep cycles, which usually last around 90 minutes each.
                     </p>
                 </div>
@@ -30,8 +30,8 @@ const props = defineProps({
                     <div class="bg-primary/10 ring-primary/20 mb-4 flex h-12 w-12 items-center justify-center rounded-full ring-1">
                         <Brain class="text-primary h-6 w-6" />
                     </div>
-                    <h3 class="mb-2 text-xl font-semibold [text-wrap:balance]">Sleep Science</h3>
-                    <p class="text-muted-foreground [text-wrap:pretty]">
+                    <h3 class="mb-2 text-xl font-semibold text-balance">Sleep Science</h3>
+                    <p class="text-muted-foreground text-pretty">
                         {{ props.appName }} uses science to help you avoid waking up during deep sleep, preventing grogginess.
                     </p>
                 </div>
@@ -42,8 +42,8 @@ const props = defineProps({
                     <div class="bg-primary/10 ring-primary/20 mb-4 flex h-12 w-12 items-center justify-center rounded-full ring-1">
                         <Coffee class="text-primary h-6 w-6" />
                     </div>
-                    <h3 class="mb-2 text-xl font-semibold [text-wrap:balance]">Better Mornings</h3>
-                    <p class="text-muted-foreground [text-wrap:pretty]">
+                    <h3 class="mb-2 text-xl font-semibold text-balance">Better Mornings</h3>
+                    <p class="text-muted-foreground text-pretty">
                         Wake up at the right time in your cycle to feel more refreshed and energized throughout the day.
                     </p>
                 </div>

@@ -23,7 +23,7 @@ const currentYear = ref(new Date().getFullYear());
                             {{ props.appName }}
                         </span>
                     </div>
-                    <p class="text-muted-foreground text-sm [text-wrap:pretty]">A good day starts with a good night's sleep.</p>
+                    <p class="text-muted-foreground text-sm text-pretty">A good day starts with a good night's sleep.</p>
                 </div>
                 <div>
                     <h3 class="text-foreground/90 mb-3 font-medium">Resources</h3>

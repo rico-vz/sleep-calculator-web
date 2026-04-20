@@ -84,8 +84,8 @@ const calculateSleepHours = (cycles: number): string => {
         class="mx-auto w-full max-w-3xl overflow-hidden rounded-2xl p-6 pt-0 shadow-[0_1px_1px_rgba(0,0,0,0.04),0_24px_60px_rgba(12,16,28,0.1)] ring-1 ring-black/5 dark:ring-white/10"
     >
         <CardHeader class="space-y-1 p-6 text-center">
-            <CardTitle class="text-2xl font-bold [text-wrap:balance]"> {{ appName }} Calculator </CardTitle>
-            <CardDescription class="[text-wrap:pretty]"> Calculate optimal sleep and wake times based on sleep cycles </CardDescription>
+            <CardTitle class="text-2xl font-bold text-balance"> {{ appName }} Calculator </CardTitle>
+            <CardDescription class="text-pretty"> Calculate optimal sleep and wake times based on sleep cycles </CardDescription>
         </CardHeader>
         <CardContent>
             <div class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -124,10 +124,10 @@ const calculateSleepHours = (cycles: number): string => {
                 leave-to-class="opacity-0 translate-y-2"
             >
                 <div v-if="results" class="border-border/70 mt-8 border-t pt-6">
-                    <h3 class="mb-4 text-lg font-semibold [text-wrap:balance]">
+                    <h3 class="mb-4 text-lg font-semibold text-balance">
                         {{ results.type === 'wake' ? 'Optimal Wake-Up Times' : 'Optimal Bedtimes' }}
                     </h3>
-                    <p class="text-muted-foreground mb-4 text-sm [text-wrap:pretty]">
+                    <p class="text-muted-foreground mb-4 text-sm text-pretty">
                         {{
                             results.type === 'wake'
                                 ? 'These wake times are based on completing full sleep cycles:'
@@ -174,14 +174,14 @@ const calculateSleepHours = (cycles: number): string => {
 
                     <div class="bg-muted/70 mt-6 rounded-xl p-4 ring-1 ring-black/5 dark:ring-white/10">
                         <h4 class="mb-2 text-sm font-semibold">About Sleep Cycles</h4>
-                        <p class="text-muted-foreground text-xs [text-wrap:pretty]">
+                        <p class="text-muted-foreground text-xs text-pretty">
                             Sleep cycles usually last around 90 minutes. Waking up at the end of a cycle, instead of in the middle of one, helps you
                             feel more refreshed.
                         </p>
-                        <p v-if="timeToFallAsleep !== 15" class="text-muted-foreground mt-2 text-xs [text-wrap:pretty]">
+                        <p v-if="timeToFallAsleep !== 15" class="text-muted-foreground mt-2 text-xs text-pretty">
                             {{ appName }} has taken into account your {{ timeToFallAsleep }} minutes to fall asleep.
                         </p>
-                        <p v-else class="text-muted-foreground mt-2 text-xs [text-wrap:pretty]">
+                        <p v-else class="text-muted-foreground mt-2 text-xs text-pretty">
                             {{ appName }} adds 15 minutes to account for the average time it takes people to fall asleep.
                         </p>
                     </div>
