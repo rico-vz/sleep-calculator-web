@@ -1,4 +1,5 @@
 import vue from '@vitejs/plugin-vue';
+import inertia from '@inertiajs/vite';
 import laravel from 'laravel-vite-plugin';
 import path from 'path';
 import tailwindcss from "@tailwindcss/vite";
@@ -9,8 +10,13 @@ export default defineConfig({
     plugins: [
         laravel({
             input: ['resources/js/app.ts'],
-            ssr: 'resources/js/ssr.ts',
             refresh: true,
+        }),
+        inertia({
+            ssr: {
+                entry: 'resources/js/ssr.ts',
+                port: 13714,
+            },
         }),
         tailwindcss(),
         vue({
