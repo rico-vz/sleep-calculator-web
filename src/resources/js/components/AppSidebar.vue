@@ -7,7 +7,7 @@ import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import { LayoutGrid, UserCog2, Home, DatabaseBackup } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
-import { type SharedData, type User } from '@/types';
+import { type SharedData } from '@/types';
 import { computed } from 'vue';
 
 const mainNavItems: NavItem[] = [
