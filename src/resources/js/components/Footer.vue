@@ -4,7 +4,7 @@ import { ref } from 'vue';
 import AppLogoIcon from './AppLogoIcon.vue';
 
 const props = defineProps({
-    appName: String
+    appName: String,
 });
 
 const currentYear = ref(new Date().getFullYear());
@@ -12,93 +12,115 @@ const currentYear = ref(new Date().getFullYear());
 
 <template>
     <footer
-        class="border-t border-border/40 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 py-6">
+        class="border-border/30 bg-background/90 supports-backdrop-filter:bg-background/60 border-t py-8 shadow-[0_-1px_0_rgba(0,0,0,0.03)] backdrop-blur"
+    >
         <div class="container max-w-(--breakpoint-xl)">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
                 <div class="space-y-2">
                     <div class="flex items-center gap-2">
                         <AppLogoIcon class="h-6 w-6" />
-                        <span class="text-lg font-bold tracking-tight ">
+                        <span class="text-lg font-bold tracking-tight">
                             {{ props.appName }}
                         </span>
                     </div>
-                    <p class="text-sm text-muted-foreground">
-                        A good day starts with a good night's sleep.
-                    </p>
+                    <p class="text-muted-foreground text-sm text-pretty">A good day starts with a good night's sleep.</p>
                 </div>
                 <div>
-                    <h3 class="font-medium mb-3 text-foreground/90">Resources</h3>
+                    <h3 class="text-foreground/90 mb-3 font-medium">Resources</h3>
                     <ul class="space-y-2">
                         <li>
-                            <Link href="/blog" class="text-sm text-muted-foreground hover:text-primary">
-                            Blog
+                            <Link
+                                href="/blog"
+                                class="text-muted-foreground hover:text-primary inline-flex min-h-10 items-center text-sm transition-colors"
+                            >
+                                Blog
                             </Link>
                         </li>
                         <li>
-                            <Link href="/about" class="text-sm text-muted-foreground hover:text-primary">
-                            About
+                            <Link
+                                href="/about"
+                                class="text-muted-foreground hover:text-primary inline-flex min-h-10 items-center text-sm transition-colors"
+                            >
+                                About
                             </Link>
                         </li>
                         <li>
-                            <Link href="/faq" class="text-sm text-muted-foreground hover:text-primary">
-                            FAQ
+                            <Link
+                                href="/faq"
+                                class="text-muted-foreground hover:text-primary inline-flex min-h-10 items-center text-sm transition-colors"
+                            >
+                                FAQ
                             </Link>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="font-medium mb-3 text-foreground/90">{{ appName }}</h3>
+                    <h3 class="text-foreground/90 mb-3 font-medium">{{ appName }}</h3>
                     <ul class="space-y-2">
                         <li>
-                            <Link href="/about" class="text-sm text-muted-foreground hover:text-primary">
-                            About
+                            <Link
+                                href="/about"
+                                class="text-muted-foreground hover:text-primary inline-flex min-h-10 items-center text-sm transition-colors"
+                            >
+                                About
                             </Link>
                         </li>
                         <li>
-                            <a href="mailto:contact@sleeputility.com" class="text-sm text-muted-foreground hover:text-primary">
-                            Email
+                            <a
+                                href="mailto:contact@sleeputility.com"
+                                class="text-muted-foreground hover:text-primary inline-flex min-h-10 items-center text-sm transition-colors"
+                            >
+                                Email
                             </a>
                         </li>
                         <li>
-                            <Link href="/privacy" class="text-sm text-muted-foreground hover:text-primary">
-                            Privacy Policy
+                            <Link
+                                href="/privacy"
+                                class="text-muted-foreground hover:text-primary inline-flex min-h-10 items-center text-sm transition-colors"
+                            >
+                                Privacy Policy
                             </Link>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="font-medium mb-3 text-foreground/90">Social</h3>
+                    <h3 class="text-foreground/90 mb-3 font-medium">Social</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="https://www.producthunt.com/posts/sleeputility?utm_source=sleeputility" target="_blank" rel="noopener noreferrer"
-                                class="text-sm text-muted-foreground hover:text-primary">
+                            <a
+                                href="https://www.producthunt.com/posts/sleeputility?utm_source=sleeputility"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-muted-foreground hover:text-primary inline-flex min-h-10 items-center text-sm transition-colors"
+                            >
                                 ProductHunt
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div
-                class="mt-8 pt-6 border-t border-border/40 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-xs text-muted-foreground">
-                    &copy; {{ currentYear }} {{ appName }}. All rights reserved.
-                </p>
-                <p class="text-xs text-muted-foreground">
+            <div class="border-border/40 mt-8 flex flex-col items-center justify-between gap-4 border-t pt-6 md:flex-row">
+                <p class="text-muted-foreground text-xs">&copy; {{ currentYear }} {{ appName }}. All rights reserved.</p>
+                <p class="text-muted-foreground text-xs">
                     Developed by
-                    <a href="https://zensodigital.com" class="text-xs text-muted-foreground hover:text-primary">
-                        Zenso Digital
-                    </a>
+                    <a href="https://zensodigital.com" class="text-muted-foreground hover:text-primary text-xs"> Zenso Digital </a>
                 </p>
 
                 <div class="flex space-x-4">
-                    <Link href="/changelog" class="text-xs text-muted-foreground hover:text-primary">
-                    Changelog
+                    <Link
+                        href="/changelog"
+                        class="text-muted-foreground hover:text-primary inline-flex min-h-10 items-center text-xs transition-colors"
+                    >
+                        Changelog
                     </Link>
-                    <Link href="/terms" class="text-xs text-muted-foreground hover:text-primary">
-                    Terms of Service
+                    <Link href="/terms" class="text-muted-foreground hover:text-primary inline-flex min-h-10 items-center text-xs transition-colors">
+                        Terms of Service
                     </Link>
-                    <Link href="/privacy" class="text-xs text-muted-foreground hover:text-primary">
-                    Privacy
+                    <Link
+                        href="/privacy"
+                        class="text-muted-foreground hover:text-primary inline-flex min-h-10 items-center text-xs transition-colors"
+                    >
+                        Privacy
                     </Link>
                 </div>
             </div>
