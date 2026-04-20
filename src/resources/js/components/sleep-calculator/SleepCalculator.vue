@@ -139,11 +139,11 @@ const calculateSleepHours = (cycles: number): string => {
                         <Card
                             v-for="(time, index) in results.times"
                             :key="index"
-                            :class="`relative rounded-xl shadow-[0_1px_1px_rgba(0,0,0,0.04),0_8px_24px_rgba(12,16,28,0.08)] ring-1 ring-black/5 dark:ring-white/10 ${(results.type === 'wake' ? index === 4 : index === 1) ? 'ring-primary shadow-[0_6px_24px_hsl(var(--primary)/0.2)] ring-2' : ''}`"
+                            :class="`relative rounded-xl shadow-[0_1px_1px_rgba(0,0,0,0.04),0_8px_24px_rgba(12,16,28,0.08)] ring-1 ring-black/5 dark:ring-white/10 ${(results.type === 'wake' ? index === 4 : index === 1) ? 'border-primary border-2' : ''}`"
                         >
                             <p
                                 v-if="(results.type === 'wake' && index === 4) || (results.type === 'sleep' && index === 1)"
-                                class="bg-card text-primary ring-primary/20 absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full px-2 py-0.5 text-xs font-medium ring-1"
+                                class="bg-card text-primary absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full px-2 py-0.5 text-xs font-medium"
                             >
                                 Recommended
                             </p>
