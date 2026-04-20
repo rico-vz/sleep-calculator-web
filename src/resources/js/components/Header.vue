@@ -21,6 +21,9 @@ const props = defineProps<Props>();
                     <img
                         src="/img/sleeputility-logo-transparent.png"
                         alt="SleepUtility Logo"
+                        width="32"
+                        height="32"
+                        style="width: 32px; height: 32px; object-fit: contain"
                         class="h-8 w-8 rounded-full ring-1 ring-black/10 dark:ring-white/10"
                     />
                 </Link>
