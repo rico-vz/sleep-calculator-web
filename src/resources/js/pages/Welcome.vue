@@ -46,7 +46,7 @@ const props = defineProps<SharedData>();
     </Head>
     <div class="bg-background relative isolate flex min-h-screen flex-col overflow-x-clip">
         <div
-            class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[480px] bg-[radial-gradient(circle_at_top,color-mix(in_srgb,var(--primary)_18%,transparent),transparent_65%)]"
+            class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[clamp(30rem,42vw,56rem)] bg-[radial-gradient(ellipse_140%_85%_at_50%_-18%,color-mix(in_srgb,var(--primary)_18%,transparent),transparent_75%)]"
         />
         <Header :appName="props.name" :auth="props.auth" />
         <Hero :appName="props.name" :time-to-fall-asleep="props.sleepPreferences.fall_asleep_time" />
