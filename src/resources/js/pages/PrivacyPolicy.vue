@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import Footer from '@/components/Footer.vue';
+import Header from '@/components/Header.vue';
+import SeoHead from '@/components/SeoHead.vue';
+import { Separator } from '@/components/ui/separator';
 import { SharedData } from '@/types';
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-import { Separator } from "@/components/ui/separator";
 
 const props = defineProps<SharedData>();
 
@@ -12,77 +12,47 @@ const lastUpdatedDate = new Date('2025-04-18').toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
 });
-
+const description = `Understand how ${props.name} collects, uses, and protects your personal information.`;
 </script>
 
 <template>
-
-    <Head>
-        <title>Privacy Policy</title>
-        <!-- Generic -->
-        <meta name="description"
-            :content="`Understand how ${props.name} collects, uses, and protects your personal information.`" />
-
-        <!-- Search Engine -->
-        <meta itemprop="name" :content="props.name" />
-        <meta itemprop="description"
-            :content="`Understand how ${props.name} collects, uses, and protects your personal information.`" />
-
-        <!-- OpenGraph -->
-        <meta property="og:url" content="https://sleeputility.com/privacy" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" :content="`Privacy Policy - ${props.name}`" />
-        <meta property="og:description"
-            :content="`Understand how ${props.name} collects, uses, and protects your personal information.`" />
-
-        <!-- Twitter -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" :content="`Privacy Policy - ${props.name}`" />
-        <meta name="twitter:description"
-            :content="`Understand how ${props.name} collects, uses, and protects your personal information.`" />
-    </Head>
+    <SeoHead title="Privacy Policy" :description="description" :canonical="route('privacy')" />
     <div class="flex min-h-screen flex-col">
         <Header :appName="props.name" :auth="props.auth" />
         <main class="flex-1">
-            <div class="container max-w-4xl mx-auto py-16 px-4">
-                <div class="text-center mb-12">
-                    <h1 class="text-4xl font-bold tracking-tight">
-                        Privacy Policy
-                    </h1>
-                    <p class="text-xl text-muted-foreground mt-4 max-w-2xl mx-auto">
-                        How we collect, use, and protect your information
-                    </p>
+            <div class="container mx-auto max-w-4xl px-4 py-16">
+                <div class="mb-12 text-center">
+                    <h1 class="text-4xl font-bold tracking-tight">Privacy Policy</h1>
+                    <p class="text-muted-foreground mx-auto mt-4 max-w-2xl text-xl">How we collect, use, and protect your information</p>
                 </div>
 
                 <div class="space-y-10">
                     <section>
-                        <h2 class="text-2xl font-bold mb-4">1. Information We Collect</h2>
+                        <h2 class="mb-4 text-2xl font-bold">1. Information We Collect</h2>
                         <p class="text-muted-foreground mb-4">
-                            <span class="font-medium text-foreground">Account Information:</span> When you create an
-                            account, we collect your name, email address, and password.
+                            <span class="text-foreground font-medium">Account Information:</span> When you create an account, we collect your name,
+                            email address, and password.
                         </p>
                         <p class="text-muted-foreground mb-4">
-                            <span class="font-medium text-foreground">Sleep Preferences:</span> We store your custom
-                            sleep preferences such as time to fall asleep.
+                            <span class="text-foreground font-medium">Sleep Preferences:</span> We store your custom sleep preferences such as time to
+                            fall asleep.
                         </p>
                         <p class="text-muted-foreground mb-4">
-                            <span class="font-medium text-foreground">Usage Data:</span> We collect information about
-                            how you interact with our website, including pages visited and features used.
+                            <span class="text-foreground font-medium">Usage Data:</span> We collect information about how you interact with our
+                            website, including pages visited and features used.
                         </p>
                         <p class="text-muted-foreground mb-4">
-                            <span class="font-medium text-foreground">Cookies and Similar Technologies:</span> We use
-                            cookies to enhance your experience, analyze site usage, and assist in our marketing efforts.
+                            <span class="text-foreground font-medium">Cookies and Similar Technologies:</span> We use cookies to enhance your
+                            experience, analyze site usage, and assist in our marketing efforts.
                         </p>
                     </section>
 
                     <Separator />
 
                     <section>
-                        <h2 class="text-2xl font-bold mb-4">2. How We Use Your Information</h2>
-                        <p class="text-muted-foreground mb-4">
-                            We use the information we collect to:
-                        </p>
-                        <ul class="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+                        <h2 class="mb-4 text-2xl font-bold">2. How We Use Your Information</h2>
+                        <p class="text-muted-foreground mb-4">We use the information we collect to:</p>
+                        <ul class="text-muted-foreground mb-4 list-disc space-y-2 pl-6">
                             <li>Provide, maintain, and improve our services</li>
                             <li>Create and manage your account</li>
                             <li>Personalize your sleep calculations based on your preferences</li>
@@ -95,12 +65,11 @@ const lastUpdatedDate = new Date('2025-04-18').toLocaleDateString('en-US', {
                     <Separator />
 
                     <section>
-                        <h2 class="text-2xl font-bold mb-4">3. Data Sharing and Disclosure</h2>
+                        <h2 class="mb-4 text-2xl font-bold">3. Data Sharing and Disclosure</h2>
                         <p class="text-muted-foreground mb-4">
-                            We do not sell your personal information to third parties. We may share your information in
-                            the following circumstances:
+                            We do not sell your personal information to third parties. We may share your information in the following circumstances:
                         </p>
-                        <ul class="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+                        <ul class="text-muted-foreground mb-4 list-disc space-y-2 pl-6">
                             <li>With service providers who help us operate our business</li>
                             <li>To comply with legal obligations</li>
                             <li>To protect the rights, property, or safety of our users or others</li>
@@ -111,23 +80,20 @@ const lastUpdatedDate = new Date('2025-04-18').toLocaleDateString('en-US', {
                     <Separator />
 
                     <section>
-                        <h2 class="text-2xl font-bold mb-4">4. Data Security</h2>
+                        <h2 class="mb-4 text-2xl font-bold">4. Data Security</h2>
                         <p class="text-muted-foreground mb-4">
-                            We implement appropriate security measures to protect against unauthorized access,
-                            alteration, disclosure, or destruction of your personal information. However, no method of
-                            transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee
-                            absolute security.
+                            We implement appropriate security measures to protect against unauthorized access, alteration, disclosure, or destruction
+                            of your personal information. However, no method of transmission over the Internet or electronic storage is 100% secure,
+                            and we cannot guarantee absolute security.
                         </p>
                     </section>
 
                     <Separator />
 
                     <section>
-                        <h2 class="text-2xl font-bold mb-4">5. Your Rights</h2>
-                        <p class="text-muted-foreground mb-4">
-                            Depending on your location, you may have the following rights regarding your data:
-                        </p>
-                        <ul class="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+                        <h2 class="mb-4 text-2xl font-bold">5. Your Rights</h2>
+                        <p class="text-muted-foreground mb-4">Depending on your location, you may have the following rights regarding your data:</p>
+                        <ul class="text-muted-foreground mb-4 list-disc space-y-2 pl-6">
                             <li>Access and receive a copy of your personal data</li>
                             <li>Rectify inaccurate or incomplete information</li>
                             <li>Request deletion of your personal data</li>
@@ -135,77 +101,66 @@ const lastUpdatedDate = new Date('2025-04-18').toLocaleDateString('en-US', {
                             <li>Data portability (receiving your data in a structured format)</li>
                             <li>Withdraw consent at any time where processing is based on consent</li>
                         </ul>
+                        <p class="text-muted-foreground mb-4">You can exercise these rights by contacting us at contact@sleeputility.com.</p>
+                    </section>
+
+                    <Separator />
+
+                    <section>
+                        <h2 class="mb-4 text-2xl font-bold">6. Cookies and Tracking Technologies</h2>
                         <p class="text-muted-foreground mb-4">
-                            You can exercise these rights by contacting us at contact@sleeputility.com.
+                            We use cookies and similar tracking technologies to collect information about your browsing activities and to remember
+                            your preferences. You can manage your cookie preferences through your browser settings.
+                        </p>
+                        <p class="text-muted-foreground mb-4">
+                            We use essential cookies to ensure the proper functioning of the website and analytical cookies to understand how visitors
+                            interact with our website. We may also use marketing cookies to display personalized advertisements.
                         </p>
                     </section>
 
                     <Separator />
 
                     <section>
-                        <h2 class="text-2xl font-bold mb-4">6. Cookies and Tracking Technologies</h2>
+                        <h2 class="mb-4 text-2xl font-bold">7. Third-Party Services</h2>
                         <p class="text-muted-foreground mb-4">
-                            We use cookies and similar tracking technologies to collect information about your browsing
-                            activities and to remember your preferences. You can manage your cookie preferences through
-                            your browser settings.
+                            Our service may include links to third-party websites or services. We are not responsible for the privacy practices of
+                            these third parties. We encourage you to read the privacy policies of any third-party service you interact with.
                         </p>
                         <p class="text-muted-foreground mb-4">
-                            We use essential cookies to ensure the proper functioning of the website and analytical
-                            cookies to understand how visitors interact with our website. We may also use marketing
-                            cookies to display personalized advertisements.
+                            We may use third-party service providers, such as Google Analytics, to monitor and analyze the use of our service.
                         </p>
                     </section>
 
                     <Separator />
 
                     <section>
-                        <h2 class="text-2xl font-bold mb-4">7. Third-Party Services</h2>
+                        <h2 class="mb-4 text-2xl font-bold">8. Children's Privacy</h2>
                         <p class="text-muted-foreground mb-4">
-                            Our service may include links to third-party websites or services. We are not responsible
-                            for the privacy practices of these third parties. We encourage you to read the privacy
-                            policies of any third-party service you interact with.
-                        </p>
-                        <p class="text-muted-foreground mb-4">
-                            We may use third-party service providers, such as Google Analytics, to monitor and analyze
-                            the use of our service.
+                            Our service is not intended for children under the age of 13, and we do not knowingly collect personal information from
+                            children. If you are a parent or guardian and believe your child has provided us with personal information, please contact
+                            us.
                         </p>
                     </section>
 
                     <Separator />
 
                     <section>
-                        <h2 class="text-2xl font-bold mb-4">8. Children's Privacy</h2>
+                        <h2 class="mb-4 text-2xl font-bold">9. Changes to This Privacy Policy</h2>
                         <p class="text-muted-foreground mb-4">
-                            Our service is not intended for children under the age of 13, and we do not knowingly
-                            collect personal information from children. If you are a parent or guardian and believe your
-                            child has provided us with personal information, please contact us.
+                            We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on
+                            this page and updating the "Last updated" date.
                         </p>
+                        <p class="text-muted-foreground mb-4">We recommend that you review this Privacy Policy periodically for any changes.</p>
                     </section>
 
                     <Separator />
 
                     <section>
-                        <h2 class="text-2xl font-bold mb-4">9. Changes to This Privacy Policy</h2>
+                        <h2 class="mb-4 text-2xl font-bold">10. Contact Us</h2>
                         <p class="text-muted-foreground mb-4">
-                            We may update our Privacy Policy from time to time. We will notify you of any changes by
-                            posting the new Privacy Policy on this page and updating the "Last updated" date.
+                            If you have any questions about this Privacy Policy, please contact us at contact@sleeputility.com.
                         </p>
-                        <p class="text-muted-foreground mb-4">
-                            We recommend that you review this Privacy Policy periodically for any changes.
-                        </p>
-                    </section>
-
-                    <Separator />
-
-                    <section>
-                        <h2 class="text-2xl font-bold mb-4">10. Contact Us</h2>
-                        <p class="text-muted-foreground mb-4">
-                            If you have any questions about this Privacy Policy, please contact us at
-                            contact@sleeputility.com.
-                        </p>
-                        <p class="text-muted-foreground mb-4">
-                            Last updated: {{ lastUpdatedDate }}
-                        </p>
+                        <p class="text-muted-foreground mb-4">Last updated: {{ lastUpdatedDate }}</p>
                     </section>
                 </div>
             </div>
