@@ -60,7 +60,7 @@ const markAppReady = () => {
 };
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => (title === appName ? title : `${title} - ${appName}`),
     resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })

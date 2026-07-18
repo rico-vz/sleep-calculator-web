@@ -7,46 +7,47 @@ import { route as ziggyRoute } from 'ziggy-js';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
-createServer((page) =>
-    createInertiaApp({
-        page,
-        render: renderToString,
-        title: (title) => `${title} - ${appName}`,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob('./pages/**/*.vue')),
-        setup({ App, props, plugin }) {
-            const app = createSSRApp({ render: () => h(App, props) });
-
-            // Configure Ziggy for SSR...
-            const ziggyConfig = {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                ...page.props.ziggy,
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                location: new URL(page.props.ziggy.location),
-            };
-
-            // Create route function...
-            const route = (name: string, params?: any, absolute?: boolean) => ziggyRoute(name, params, absolute, ziggyConfig);
-
-            // Make route function available globally...
+createServer(
+    (page) =>
+        createInertiaApp({
+            page,
+            render: renderToString,
+            title: (title) => (title === appName ? title : `${title} - ${appName}`),
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            app.config.globalProperties.route = route;
+            resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob('./pages/**/*.vue')),
+            setup({ App, props, plugin }) {
+                const app = createSSRApp({ render: () => h(App, props) });
 
-            // Make route function available globally for SSR...
-            if (typeof window === 'undefined') {
+                // Configure Ziggy for SSR...
+                const ziggyConfig = {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    ...page.props.ziggy,
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    location: new URL(page.props.ziggy.location),
+                };
+
+                // Create route function...
+                const route = (name: string, params?: any, absolute?: boolean) => ziggyRoute(name, params, absolute, ziggyConfig);
+
+                // Make route function available globally...
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                global.route = route;
-            }
+                app.config.globalProperties.route = route;
 
-            app.use(plugin);
+                // Make route function available globally for SSR...
+                if (typeof window === 'undefined') {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    global.route = route;
+                }
 
-            return app;
-        },
-    }),
-    13714
+                app.use(plugin);
+
+                return app;
+            },
+        }),
+    13714,
 );
