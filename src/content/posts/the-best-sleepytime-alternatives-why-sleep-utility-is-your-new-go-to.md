@@ -11,7 +11,7 @@ tags:
     - Sleep Optimization
     - SleepyTi.me Alternatives
     - Best Sleep Apps
-excerpt:
+excerpt: "Once, the internet was filled with simple, ad-free tools like SleepyTi.me butnow, Sleep Utility revives that spirit, offering clarity and comfort in today’s noisy web.
 author: SleepUtility
 ---
 
