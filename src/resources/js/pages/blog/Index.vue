@@ -1,26 +1,16 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
-import { Search } from '@lucide/vue';
-import { SharedData } from '@/types';
-import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-import { computed, ref } from 'vue'
-import { usePage } from '@inertiajs/vue3'
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle
-} from "@/components/ui/card";
-import {
-    Avatar,
-    AvatarFallback
-} from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-
+import Header from '@/components/Header.vue';
+import SeoHead from '@/components/SeoHead.vue';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { blogSchema } from '@/lib/seo';
+import { SharedData } from '@/types';
+import { Link, usePage } from '@inertiajs/vue3';
+import { Search } from '@lucide/vue';
+import { computed, ref } from 'vue';
 
 interface BlogPost {
     date: number;
@@ -37,11 +27,12 @@ interface BlogPost {
 }
 
 const props = defineProps<SharedData>();
+const description = `Read the latest sleep calculator guides and updates from ${props.name}.`;
 
-const page = usePage()
+const page = usePage();
 const posts = computed<BlogPost[]>(() => {
     return page.props.posts as BlogPost[];
-})
+});
 
 const categories = computed(() => {
     const allCategories = new Set<string>();
@@ -52,25 +43,19 @@ const categories = computed(() => {
     });
 
     return ['All', ...Array.from(allCategories)];
-})
+});
 
 const selectedCategory = ref('All');
 const searchQuery = ref('');
 
-
 const filteredPosts = computed(() => {
     // Categoryu
-    let results = selectedCategory.value === 'All'
-        ? posts.value
-        : posts.value.filter(post => post.categories.includes(selectedCategory.value));
+    let results = selectedCategory.value === 'All' ? posts.value : posts.value.filter((post) => post.categories.includes(selectedCategory.value));
 
     // Search
     if (searchQuery.value.trim()) {
         const query = searchQuery.value.toLowerCase().trim();
-        results = results.filter(post =>
-            post.title.toLowerCase().includes(query) ||
-            post.excerpt.toLowerCase().includes(query)
-        );
+        results = results.filter((post) => post.title.toLowerCase().includes(query) || post.excerpt.toLowerCase().includes(query));
     }
 
     return results;
@@ -85,42 +70,46 @@ function formatDate(unix: number): string {
     return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
+        day: 'numeric',
     });
 }
 </script>
 
 <template>
-
-    <Head title="Blog" />
+    <SeoHead
+        title="Blog"
+        :description="description"
+        :canonical="route('blog.index')"
+        page-type="CollectionPage"
+        :schemas="[blogSchema(props.name, route('blog.index'))]"
+    />
 
     <div class="flex min-h-screen flex-col">
         <Header :appName="props.name" :auth="props.auth" />
-        <main class="flex-1 stars">
-            <div class="container max-w-6xl mx-auto py-16 px-4">
-                <div class="text-center mb-12">
-                    <h1 class="text-4xl font-bold font-montserrat tracking-tight">
-                        {{ props.name }} <span class="sleep-text-gradient">Blog</span>
-                    </h1>
-                    <p class="text-xl text-muted-foreground mt-4 max-w-2xl mx-auto">
-                        Read the latest blog posts from {{ props.name }}.
-                    </p>
+        <main class="stars flex-1">
+            <div class="container mx-auto max-w-6xl px-4 py-16">
+                <div class="mb-12 text-center">
+                    <h1 class="font-montserrat text-4xl font-bold tracking-tight">{{ props.name }} <span class="sleep-text-gradient">Blog</span></h1>
+                    <p class="text-muted-foreground mx-auto mt-4 max-w-2xl text-xl">Read the latest blog posts from {{ props.name }}.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-                    <div class="md:col-span-1 space-y-6">
+                <div class="relative grid grid-cols-1 gap-8 md:grid-cols-4">
+                    <div class="space-y-6 md:col-span-1">
                         <div class="relative">
-                            <Search
-                                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                            <Search class="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                             <Input v-model="searchQuery" placeholder="Search articles..." class="pl-10" />
                         </div>
 
                         <div>
-                            <h3 class="font-medium mb-3">Categories</h3>
+                            <h3 class="mb-3 font-medium">Categories</h3>
                             <ul class="space-y-2">
                                 <li v-for="category in categories" :key="category">
-                                    <Button :variant="category === selectedCategory ? 'default' : 'ghost'" size="sm"
-                                        class="w-full justify-start" @click="selectCategory(category)">
+                                    <Button
+                                        :variant="category === selectedCategory ? 'default' : 'ghost'"
+                                        size="sm"
+                                        class="w-full justify-start"
+                                        @click="selectCategory(category)"
+                                    >
                                         {{ category }}
                                     </Button>
                                 </li>
@@ -130,24 +119,24 @@ function formatDate(unix: number): string {
 
                     <div class="md:col-span-3">
                         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
-                            <Card v-for="post in filteredPosts" :key="post.slug" class="flex flex-col h-full py-4">
+                            <Card v-for="post in filteredPosts" :key="post.slug" class="flex h-full flex-col py-4">
                                 <CardHeader>
-                                    <div class="flex justify-between items-start mb-2">
-                                        <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                                    <div class="mb-2 flex items-start justify-between">
+                                        <span class="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs">
                                             {{ post.categories.join(', ') }}
                                         </span>
                                     </div>
-                                    <CardTitle class="text-xl hover:text-primary transition-colors">
+                                    <CardTitle class="hover:text-primary text-xl transition-colors">
                                         <Link :href="route('blog.show', post.slug)">{{ post.title }}</Link>
                                     </CardTitle>
-                                    <CardDescription class="flex items-center gap-2 text-xs pt-2">
+                                    <CardDescription class="flex items-center gap-2 pt-2 text-xs">
                                         <span>{{ formatDate(post.date) }}</span>
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent class="grow">
                                     <p class="text-muted-foreground text-sm">{{ post.excerpt }}</p>
                                 </CardContent>
-                                <CardFooter class="border-t pt-4 flex justify-between items-center">
+                                <CardFooter class="flex items-center justify-between border-t pt-4">
                                     <div class="flex items-center gap-2">
                                         <Avatar class="h-8 w-8">
                                             <AvatarFallback class="bg-primary/10 text-primary text-xs">
