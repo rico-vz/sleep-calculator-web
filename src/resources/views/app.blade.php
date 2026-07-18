@@ -60,8 +60,8 @@
     @routes
     @vite(['resources/js/app.ts'])
     @inertiaHead
-    <script defer src="https://pulse.zensodigital.com/script.js" data-website-id="5345b316-79a7-450b-b4a1-ddc78de939a9">
-    </script>
+    <script defer src="https://io.zenso.digital/core" data-website-id="e9384704-9330-469a-b657-8a34ce113dba"></script>
+    <script defer src="https://io.zenso.digital/recorder.js" data-website-id="e9384704-9330-469a-b657-8a34ce113dba" data-sample-rate="0.15" data-mask-level="moderate" data-max-duration="300000"></script>
 </head>
 
 <body class="bg-background text-foreground font-sans antialiased">
