@@ -2,8 +2,11 @@
 
 namespace App\Console\Commands;
 
+use DateTimeImmutable;
 use Illuminate\Console\Command;
-use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sheets\Facades\Sheets;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 
 class GenerateSitemap extends Command
 {
@@ -24,9 +27,35 @@ class GenerateSitemap extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
-        SitemapGenerator::create(config('app.url'))
-            ->writeToFile(public_path('sitemap.xml'));
+        $sitemap = $this->sitemap();
+
+        $sitemap->writeToFile(public_path('sitemap.xml'));
+
+        $this->components->info('Generated sitemap with '.count($sitemap->getTags()).' URL(s).');
+
+        return self::SUCCESS;
+    }
+
+    public function sitemap(): Sitemap
+    {
+        $sitemap = Sitemap::create()->add([
+            route('home'),
+            route('about'),
+            route('privacy'),
+            route('terms'),
+            route('faq'),
+            route('blog.index'),
+        ]);
+
+        foreach (Sheets::collection('posts')->all()->sortBy('slug') as $post) {
+            $sitemap->add(
+                Url::create(route('blog.show', $post->slug))
+                    ->setLastModificationDate(new DateTimeImmutable("@{$post->date}")),
+            );
+        }
+
+        return $sitemap;
     }
 }
